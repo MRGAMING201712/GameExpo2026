@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://jucg77hmkrba"]
+
+[node name="MainGame" type="Node" unique_id=132216327]
+
+[node name="Systems" type="Node" parent="." unique_id=907119562]
+
+[node name="World" type="Node2D" parent="." unique_id=1024111217]
+
+[node name="LevelRoot" type="Node2D" parent="World" unique_id=2037031961]
+
+[node name="GroundSplatterFXRoot" type="Node2D" parent="World" unique_id=1173953921]
+
+[node name="EntityRoot" type="Node2D" parent="World" unique_id=575680853]
+y_sort_enabled = true
+
+[node name="EffectRoot" type="Node2D" parent="World" unique_id=950000493]
+
+[node name="HudLayer" type="CanvasLayer" parent="." unique_id=1525767133]
+layer = 10
+
+[node name="HudRoot" type="Control" parent="HudLayer" unique_id=1636394951]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PauseLayer" type="CanvasLayer" parent="." unique_id=305098401]
+layer = 20
+
+[node name="PauseRoot" type="Control" parent="PauseLayer" unique_id=1279945566]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TransitionLayer" type="CanvasLayer" parent="." unique_id=1809216423]
+layer = 100
+
+[node name="TransitionRoot" type="Control" parent="TransitionLayer" unique_id=390701433]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
