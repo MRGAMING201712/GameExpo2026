@@ -8,7 +8,10 @@
 
 [node name="LevelRoot" type="Node2D" parent="World" unique_id=2037031961]
 
+[node name="GroundSplatterFXRoot" type="Node2D" parent="World" unique_id=1173953921]
+
 [node name="EntityRoot" type="Node2D" parent="World" unique_id=575680853]
+y_sort_enabled = true
 
 [node name="EffectRoot" type="Node2D" parent="World" unique_id=950000493]
 

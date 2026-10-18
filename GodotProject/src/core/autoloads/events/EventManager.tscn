@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cwofxexu6ud5c"]
+
+[ext_resource type="Script" uid="uid://nyt5eaw5350b" path="res://src/core/autoloads/events/EventManager.cs" id="1_7m8nv"]
+
+[node name="EventManager" type="Node" unique_id=1096635772]
+script = ExtResource("1_7m8nv")
