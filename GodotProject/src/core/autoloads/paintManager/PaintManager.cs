@@ -73,7 +73,7 @@ public partial class PaintManager : Node
         coverage = paintable > 0 ? (float)paintedCount / paintable : 0f;
         EmitCoverage();
     }
-    //test
+    
     public void Paint(Vector2 worldPos, float radius, PaintColor color)
     {
         if (color == PaintColor.None) 
@@ -128,7 +128,7 @@ public partial class PaintManager : Node
     }
 
     // Grey to color = ++, color to grey = --, color to color = nothing
-    private void SetCell(int cellX, int cellY, PaintColor nw) //what is nw? idk
+    private void SetCell(int cellX, int cellY, PaintColor newValue)
     {
         if(cellX < 0 || cellX >= width || cellY < 0 || cellY >= height)
         {
@@ -137,12 +137,12 @@ public partial class PaintManager : Node
         
         int index = cellY * width + cellX;
         PaintColor oldValue = cells[index];
-        if(oldValue == nw)
+        if(oldValue == newValue)
         {
             return;
         }
 
-        cells[index] = nw;
+        cells[index] = newValue;
         if(blocked[index])
         {
             return;
@@ -152,7 +152,7 @@ public partial class PaintManager : Node
         {
             paintedCount++;
         }
-        else if(nw == 0)
+        else if(newValue == 0)
         {
             paintedCount--;
         }
@@ -239,18 +239,18 @@ public partial class PaintManager : Node
 
         Image brushImage = (Image)brushSources[brushIndex].Duplicate();
         brushImage.Resize(size, size, Image.Interpolation.Bilinear); // switch interpolation for testing
-        if((variation & 1) != 0)
+        if (GD.Randi() % 2 == 0) 
         {
             brushImage.FlipX();
         }
-        if((variation & 2) != 0)
+        if (GD.Randi() % 2 == 0)
         {
-            brushImage.FlipY();
+            brushImage.FlipY();            
         }
-        if((variation & 4) != 0)
+        if (GD.Randi() % 2 == 0)
         {
-            brushImage.Rotate90(ClockDirection.Clockwise);
-        }
+            brushImage.Rotate90(ClockDirection.Clockwise);  
+        } 
 
         Color tint = palette[(int)color];
         for(int y = 0; y < size; y++)
