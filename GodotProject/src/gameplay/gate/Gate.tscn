@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://c7ipfhv4quhfu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vwe8v"]
+
+[node name="Gate" type="Node2D" unique_id=930881152]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1643011415]
+sprite_frames = SubResource("SpriteFrames_vwe8v")
+
+[node name="Blocker" type="StaticBody2D" parent="AnimatedSprite2D" unique_id=1246051029]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Blocker" unique_id=1246461251]
+
+[node name="Trigger" type="Area2D" parent="AnimatedSprite2D" unique_id=709087463]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Trigger" unique_id=2020984348]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://iqdsoa6jq4ce"
-path="res://.godot/imported/Brush_02.png-e6d812f8ee7786516c1cbb69971deaed.ctex"
+uid="uid://conw8875n5rt6"
+path="res://.godot/imported/Brush_03.png-8e374fcb642e8fb2054da59769b38b8b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/world/testing/brushes/Brush_02.png"
-dest_files=["res://.godot/imported/Brush_02.png-e6d812f8ee7786516c1cbb69971deaed.ctex"]
+source_file="res://assets/art/splatters/brushes/Brush_03.png"
+dest_files=["res://.godot/imported/Brush_03.png-8e374fcb642e8fb2054da59769b38b8b.ctex"]
 
 [params]
 

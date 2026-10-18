@@ -12,11 +12,13 @@ config_version=5
 
 config/name="GameExpo2026"
 config/features=PackedStringArray("4.7", "C#", "Forward Plus")
-config/icon="res://icon.svg"
+boot_splash/show_image=false
 
 [autoload]
 
 PaintBrush="*uid://co240ilad13wx"
+GameManager="*uid://bnu2u5e1n87ev"
+EventManager="*uid://cwofxexu6ud5c"
 
 [display]
 

@@ -1,9 +1,0 @@
-[gd_scene format=3 uid="uid://co240ilad13wx"]
-
-[ext_resource type="Script" uid="uid://yrh5qohgp388" path="res://src/core/autoload/paintManager/PaintManager.cs" id="1_hjkw0"]
-[ext_resource type="Texture2D" uid="uid://iqdsoa6jq4ce" path="res://assets/art/world/testing/brushes/Brush_02.png" id="2_553j6"]
-[ext_resource type="Texture2D" uid="uid://conw8875n5rt6" path="res://assets/art/world/testing/brushes/Brush_03.png" id="3_7cogj"]
-
-[node name="PaintManager" type="Node" unique_id=589441808]
-script = ExtResource("1_hjkw0")
-brushTextures = [ExtResource("2_553j6"), ExtResource("2_553j6"), ExtResource("3_7cogj")]

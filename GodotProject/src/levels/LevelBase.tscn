@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://5561pr8g1tf0"]
+
+[ext_resource type="Script" uid="uid://bgf41gh6yknno" path="res://src/levels/Scripts/Zone.cs" id="1_qbtev"]
+[ext_resource type="Texture2D" uid="uid://cq1elupmiwpy5" path="res://assets/art/world/testing/texture_Test.webp" id="2_j0uy1"]
+[ext_resource type="Shader" uid="uid://dj0nehvhaid2m" path="res://src/shaders/paintFloor.gdshader" id="2_qyaep"]
+[ext_resource type="PackedScene" uid="uid://dait3y5nl7bnw" path="res://src/gameplay/spawner/PlayerSpawn.tscn" id="4_adw88"]
+[ext_resource type="PackedScene" uid="uid://tpmfow63nch5" path="res://src/gameplay/spawner/EnemySpawner.tscn" id="5_j0ymd"]
+[ext_resource type="PackedScene" uid="uid://c7ipfhv4quhfu" path="res://src/gameplay/gate/Gate.tscn" id="6_eptvw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j0uy1"]
+shader = ExtResource("2_qyaep")
+shader_parameter/edge_softness = 0.15
+shader_parameter/tint_strength = 0.65
+
+[node name="Zone" type="Node2D" unique_id=1085453153]
+script = ExtResource("1_qbtev")
+
+[node name="Floor" type="Sprite2D" parent="." unique_id=112518593]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_j0uy1")
+texture = ExtResource("2_j0uy1")
+
+[node name="Buildings" type="Node2D" parent="." unique_id=819681681]
+unique_name_in_owner = true
+
+[node name="PlayerSpawn" parent="." unique_id=1768636704 instance=ExtResource("4_adw88")]
+
+[node name="EnemySpawner" parent="." unique_id=1678469005 instance=ExtResource("5_j0ymd")]
+
+[node name="Gate" parent="." unique_id=930881152 instance=ExtResource("6_eptvw")]
