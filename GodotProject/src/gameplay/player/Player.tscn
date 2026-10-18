@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://q50hbkishrgg"]
+
+[ext_resource type="Texture2D" uid="uid://ioe4es2doell" path="res://assets/art/characters/player/playerPlaceholder.png" id="1_khxic"]
+[ext_resource type="PackedScene" uid="uid://cs62pugtkbqok" path="res://src/components/DamageComponent.tscn" id="2_km0ph"]
+[ext_resource type="PackedScene" uid="uid://dxukcmok1lvd0" path="res://src/components/HealthComponent.tscn" id="3_yfsif"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2qkkm"]
+radius = 30.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vwe8v"]
+radius = 30.0
+
+[node name="Player" type="Node2D" unique_id=1978226328]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=12451452]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=705779923]
+shape = SubResource("CircleShape2D_2qkkm")
+
+[node name="PlayerSprite" type="Sprite2D" parent="." unique_id=1101639010]
+texture = ExtResource("1_khxic")
+
+[node name="BrushSprite" type="Sprite2D" parent="." unique_id=1396022532]
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=825049684]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1261307476]
+shape = SubResource("CircleShape2D_vwe8v")
+
+[node name="DamageComponent" parent="." unique_id=1705232502 instance=ExtResource("2_km0ph")]
+
+[node name="HealthComponent" parent="." unique_id=937206982 instance=ExtResource("3_yfsif")]
