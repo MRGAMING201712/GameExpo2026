@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d27m34ef12dxm"]
 
-[ext_resource type="Texture2D" uid="uid://blo4y6gaa1laq" path="res://assets/art/world/testing/floor_Test.webp" id="1_iyw01"]
 [ext_resource type="Shader" uid="uid://dj0nehvhaid2m" path="res://src/shaders/paintFloor.gdshader" id="1_sqgrq"]
+[ext_resource type="Texture2D" uid="uid://cth2pcxq0cqx8" path="res://assets/art/world/testing/floorTest.png" id="2_76ga2"]
 [ext_resource type="Script" uid="uid://ci0f2unwwh8mv" path="res://assets/art/world/testing/scripts/floorTest.cs" id="3_76ga2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_76ga2"]
@@ -14,5 +14,5 @@ shader_parameter/tint_strength = 0.65
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=390096540]
 material = SubResource("ShaderMaterial_76ga2")
 position = Vector2(654, 294)
-texture = ExtResource("1_iyw01")
+texture = ExtResource("2_76ga2")
 script = ExtResource("3_76ga2")
