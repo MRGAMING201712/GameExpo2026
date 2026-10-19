@@ -29,12 +29,13 @@ shape = SubResource("CircleShape2D_2qkkm")
 [node name="PlayerSprite" type="Sprite2D" parent="." unique_id=1101639010]
 texture = ExtResource("1_khxic")
 
-[node name="Hitbox" type="Area2D" parent="." unique_id=825049684]
+[node name="HurtBox" type="Area2D" parent="." unique_id=825049684]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1261307476]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1261307476]
 shape = SubResource("CircleShape2D_vwe8v")
 
 [node name="BrushRoot" type="Node2D" parent="." unique_id=1567526841]
+visible = false
 
 [node name="BrushHandle" type="Sprite2D" parent="BrushRoot" unique_id=1396022532]
 position = Vector2(40, 0)

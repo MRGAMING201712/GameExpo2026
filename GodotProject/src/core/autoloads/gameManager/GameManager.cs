@@ -70,7 +70,6 @@ public partial class GameManager : Node
         }
         zoneIndex ++;
         GoToLevel(levelScenes[zoneIndex], GameState.Playing);
-
     }
     public void OnCoverageChanged(float coverage)
     {

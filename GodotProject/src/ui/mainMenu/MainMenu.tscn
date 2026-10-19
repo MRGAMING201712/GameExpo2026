@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://6ht1tk4n3l1y"]
+
+[ext_resource type="Script" uid="uid://da07hb8al8h4q" path="res://src/ui/mainMenu/ButtonTest.cs" id="1_0ym8x"]
+[ext_resource type="PackedScene" uid="uid://jucg77hmkrba" path="res://src/core/mainGame/mainGame.tscn" id="2_cwlkl"]
+
+[node name="MainMenu" type="Node2D" unique_id=1370688210]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1356053144]
+offset_right = 1158.0
+offset_bottom = 653.0
+
+[node name="Button" type="Button" parent="." unique_id=212309620]
+offset_left = 543.0
+offset_top = 346.0
+offset_right = 551.0
+offset_bottom = 354.0
+text = "START GAME"
+script = ExtResource("1_0ym8x")
+mainGame = ExtResource("2_cwlkl")

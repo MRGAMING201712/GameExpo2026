@@ -13,7 +13,7 @@ public partial class MainGame : Node
     // The ui will have their classes changed once they are made so you can easily call their functions
     [Export] public Control hudRoot { get; set; }
     [Export] public Control pauseRoot { get; set; }
-    [Export] public Control transitionRoot { get; set; }
+    [Export] public LevelTransition transitionRoot { get; set; }
     [Export] public PackedScene playerScene;
 
     
@@ -30,7 +30,8 @@ public partial class MainGame : Node
 
     public async Task LoadLevel(PackedScene levelScene, Player player)
     {
-        // await transition, fade to black or something
+        await transitionRoot.FadeBackground(true);
+
         ClearLevel();
         Node2D level = levelScene.Instantiate<Node2D>();
         levelRoot.AddChild(level);
@@ -42,7 +43,7 @@ public partial class MainGame : Node
             player.TeleportToSpawnPoint(level.GetNode<Marker2D>("PlayerSpawn"));
         }
 
-        // await transition, fade in or something else
+        await transitionRoot.FadeBackground(false);
     }
 
 
