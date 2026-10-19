@@ -8,8 +8,20 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j0uy1"]
 shader = ExtResource("2_qyaep")
-shader_parameter/edge_softness = 0.15
 shader_parameter/tint_strength = 0.65
+shader_parameter/brightness = 1.6
+shader_parameter/rim_darkness = 0.35
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_j0ymd"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_eptvw"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ajwyd"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_nswcu"]
+normal = Vector2(0, 1)
 
 [node name="Zone" type="Node2D" unique_id=1085453153]
 script = ExtResource("1_qbtev")
@@ -18,6 +30,29 @@ script = ExtResource("1_qbtev")
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_j0uy1")
 position = Vector2(623, 341)
+
+[node name="LevelBorder" type="StaticBody2D" parent="." unique_id=437417678]
+
+[node name="TopWall" type="CollisionShape2D" parent="LevelBorder" unique_id=8986453]
+position = Vector2(-27, -360)
+scale = Vector2(1.5200024, 1)
+shape = SubResource("WorldBoundaryShape2D_j0ymd")
+
+[node name="RightWall" type="CollisionShape2D" parent="LevelBorder" unique_id=298951740]
+position = Vector2(639, -15)
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_eptvw")
+
+[node name="BottomWall" type="CollisionShape2D" parent="LevelBorder" unique_id=480521510]
+position = Vector2(-31, 360)
+scale = Vector2(1.5200024, 1)
+shape = SubResource("WorldBoundaryShape2D_ajwyd")
+
+[node name="LeftWall" type="CollisionShape2D" parent="LevelBorder" unique_id=616019324]
+position = Vector2(-643, 9)
+rotation = -1.5707964
+scale = Vector2(0.9957944, 1)
+shape = SubResource("WorldBoundaryShape2D_nswcu")
 
 [node name="Buildings" type="Node2D" parent="." unique_id=819681681]
 unique_name_in_owner = true
