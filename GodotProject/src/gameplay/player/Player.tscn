@@ -12,35 +12,43 @@ radius = 30.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_vwe8v"]
 radius = 30.0
 
-[node name="Player" type="Node2D" unique_id=1978226328]
+[sub_resource type="CircleShape2D" id="CircleShape2D_80xng"]
+radius = 30.0
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=12451452 node_paths=PackedStringArray("health", "brushRoot", "brushTip")]
+[node name="Player" type="CharacterBody2D" unique_id=12451452 node_paths=PackedStringArray("health", "brushRoot", "brushTip")]
 script = ExtResource("1_km0ph")
-health = NodePath("../HealthComponent")
-timeForSwing = 0.4
-paintSize = 40.0
+health = NodePath("HealthComponent")
+timeForSwing = 0.2
+paintSize = 80.0
 brushRoot = NodePath("BrushRoot")
 brushTip = NodePath("BrushRoot/BrushTip")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=705779923]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=705779923]
 shape = SubResource("CircleShape2D_2qkkm")
 
-[node name="PlayerSprite" type="Sprite2D" parent="CharacterBody2D" unique_id=1101639010]
+[node name="PlayerSprite" type="Sprite2D" parent="." unique_id=1101639010]
 texture = ExtResource("1_khxic")
 
-[node name="Hitbox" type="Area2D" parent="CharacterBody2D" unique_id=825049684]
+[node name="HurtBox" type="Area2D" parent="." unique_id=825049684]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Hitbox" unique_id=1261307476]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1261307476]
 shape = SubResource("CircleShape2D_vwe8v")
 
-[node name="BrushRoot" type="Node2D" parent="CharacterBody2D" unique_id=1567526841]
+[node name="BrushRoot" type="Node2D" parent="." unique_id=1567526841]
+visible = false
 
-[node name="BrushHandle" type="Sprite2D" parent="CharacterBody2D/BrushRoot" unique_id=1396022532]
+[node name="BrushHandle" type="Sprite2D" parent="BrushRoot" unique_id=1396022532]
 position = Vector2(40, 0)
 texture = ExtResource("3_wa5q6")
 
-[node name="BrushTip" type="Sprite2D" parent="CharacterBody2D/BrushRoot" unique_id=1969961468]
+[node name="BrushTip" type="Sprite2D" parent="BrushRoot" unique_id=1969961468]
 position = Vector2(40, 0)
 texture = ExtResource("4_qeda6")
+
+[node name="AttackHitbox" type="Area2D" parent="BrushRoot/BrushTip" unique_id=1409207226]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BrushRoot/BrushTip/AttackHitbox" unique_id=1412811052]
+position = Vector2(22, 0)
+shape = SubResource("CircleShape2D_80xng")
 
 [node name="HealthComponent" parent="." unique_id=937206982 instance=ExtResource("3_yfsif")]

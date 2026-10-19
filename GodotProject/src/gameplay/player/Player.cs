@@ -21,7 +21,8 @@ public partial class Player : CharacterBody2D
     private Vector2 lastTipLocation;
     [Export] public Node2D brushRoot;
     [Export] public Sprite2D brushTip;
-    public PaintColor [] unlockedColors = {PaintColor.Red, PaintColor.Blue, PaintColor.Yellow};
+    public PaintColor [] allColors = {PaintColor.Red, PaintColor.Blue, PaintColor.Yellow};
+    public int availableColors = 0;
     public int currentColor = 0;
 
 
@@ -32,8 +33,15 @@ public partial class Player : CharacterBody2D
         health.Died += OnDied;
         brushTip.Modulate = PaintManager.Instance.palette[currentColor + 1]; // cuz palette has transluscent as 0
     }
+
+    public override void _ExitTree()
+    {
+        health.HealthChanged -= OnHealthChanged;
+        health.Died -= OnDied;
+    }
     public override void _Input(InputEvent @event)
     {
+
         if (@event.IsActionPressed("attack") && !bIsSwinging)
         {
             bIsSwinging = true;
@@ -48,7 +56,7 @@ public partial class Player : CharacterBody2D
 
         if(@event.IsActionPressed("switchPaintUp"))
         {
-            if(currentColor + 1 >= unlockedColors.Length)
+            if(currentColor + 1 >= allColors.Length || currentColor + 1 > availableColors)
             {
                 currentColor = 0;
                 brushTip.Modulate = PaintManager.Instance.palette[currentColor + 1]; // cuz palette has transluscent as 0
@@ -59,16 +67,18 @@ public partial class Player : CharacterBody2D
         }
 
         if(@event.IsActionPressed("switchPaintDown"))
-        {
+        {            
             if(currentColor - 1 < 0)
             {
-                currentColor = unlockedColors.Length - 1;
+                currentColor = Mathf.Min(availableColors, allColors.Length - 1);
                 brushTip.Modulate = PaintManager.Instance.palette[currentColor + 1]; // cuz palette has transluscent as 0
                 return;
             }
             currentColor--;
             brushTip.Modulate = PaintManager.Instance.palette[currentColor + 1]; // cuz palette has transluscent as 0
         }
+    
+    
     }
     public override void _PhysicsProcess(double delta)
     {
@@ -85,6 +95,10 @@ public partial class Player : CharacterBody2D
         MoveAndSlide();
     }
 
+    public void TeleportToSpawnPoint(Marker2D playerSpawn)
+    {
+        this.GlobalPosition = playerSpawn.GlobalPosition;
+    }
     private void SwingStep(float offset)
     {            
         aim = (GetGlobalMousePosition() - GlobalPosition).Angle();
@@ -95,7 +109,7 @@ public partial class Player : CharacterBody2D
         int steps = Mathf.Max(1, Mathf.CeilToInt(lastTipLocation.DistanceTo(tip) / (paintSize * 0.5f)));
         for (int i = 1; i <= steps; i++)
         {
-            PaintManager.Instance.Paint(lastTipLocation.Lerp(tip, (float)i / steps), paintSize, unlockedColors[currentColor]);
+            PaintManager.Instance.Paint(lastTipLocation.Lerp(tip, (float)i / steps), paintSize, allColors[currentColor]);
         }
 
         lastTipLocation = tip;
@@ -111,6 +125,7 @@ public partial class Player : CharacterBody2D
         brushRoot.Visible = false;
         bIsSwinging = false;
     }
+
     private void OnHealthChanged(int current, int max)
     {
         EventManager.Instance.EmitSignal("PlayerHealthChanged", current, max);
@@ -120,6 +135,4 @@ public partial class Player : CharacterBody2D
     {
         EventManager.Instance.EmitSignal("PlayerDied");
     }
-
-
 }

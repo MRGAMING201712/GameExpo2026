@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 public partial class MainGame : Node
 {
@@ -12,8 +13,10 @@ public partial class MainGame : Node
     // The ui will have their classes changed once they are made so you can easily call their functions
     [Export] public Control hudRoot { get; set; }
     [Export] public Control pauseRoot { get; set; }
-    [Export] public Control transitionRoot { get; set; }
+    [Export] public LevelTransition transitionRoot { get; set; }
+    [Export] public PackedScene playerScene;
 
+    
 
     public override void _EnterTree()
     {
@@ -22,6 +25,53 @@ public partial class MainGame : Node
 
     public override void _Ready()
     {
-        // gameManager will have a on main game ready function
+        GameManager.Instance.MainGameReady();
+    }
+
+    public async Task LoadLevel(PackedScene levelScene, Player player)
+    {
+        await transitionRoot.FadeBackground(true);
+
+        ClearLevel();
+        Node2D level = levelScene.Instantiate<Node2D>();
+        levelRoot.AddChild(level);
+        if (player == null)
+        {
+            player = playerScene.Instantiate<Player>();
+            player.availableColors = Mathf.Min(GameManager.Instance.zoneIndex, 2);
+            entityRoot.AddChild(player);
+            player.TeleportToSpawnPoint(level.GetNode<Marker2D>("PlayerSpawn"));
+        }
+
+        await transitionRoot.FadeBackground(false);
+    }
+
+
+    public void ClearLevel()
+    {
+        foreach(Node2D entity in entityRoot.GetChildren())
+        {
+            entityRoot.RemoveChild(entity);
+            entity.QueueFree();
+        }
+
+        foreach(Node2D level in levelRoot.GetChildren())
+        {
+            levelRoot.RemoveChild(level);
+            level.QueueFree();
+        }
+
+        foreach(Node2D groundVFX in groundVFXRoot.GetChildren())
+        {
+            groundVFXRoot.RemoveChild(groundVFX);
+            groundVFX.QueueFree();
+        }
+
+        foreach(Node2D effect in effectRoot.GetChildren())
+        {
+            effectRoot.RemoveChild(effect);
+            effect.QueueFree();
+        }
+
     }
 }

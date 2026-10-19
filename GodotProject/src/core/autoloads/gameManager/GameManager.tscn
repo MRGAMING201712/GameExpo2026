@@ -1,6 +1,13 @@
 [gd_scene format=3 uid="uid://bnu2u5e1n87ev"]
 
 [ext_resource type="Script" uid="uid://dr1cu6nmwt1i3" path="res://src/core/autoloads/gameManager/GameManager.cs" id="1_3lonx"]
+[ext_resource type="PackedScene" uid="uid://6ht1tk4n3l1y" path="res://src/ui/mainMenu/MainMenu.tscn" id="2_bi176"]
+[ext_resource type="PackedScene" uid="uid://jucg77hmkrba" path="res://src/core/mainGame/mainGame.tscn" id="2_mudfu"]
+[ext_resource type="PackedScene" uid="uid://noohadqafi1j" path="res://src/levels/TestLevel.tscn" id="3_4cocd"]
 
 [node name="GameManager" type="Node" unique_id=1283605049]
 script = ExtResource("1_3lonx")
+coverageToWin = 0.05
+mainMenuScreen = ExtResource("2_bi176")
+mainGameScene = ExtResource("2_mudfu")
+levelScenes = Array[PackedScene]([ExtResource("3_4cocd"), ExtResource("3_4cocd"), ExtResource("3_4cocd")])

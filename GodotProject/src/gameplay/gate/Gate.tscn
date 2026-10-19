@@ -29,10 +29,11 @@ size = Vector2(150, 60)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h5ls0"]
 size = Vector2(150, 60)
 
-[node name="Gate" type="Node2D" unique_id=930881152 node_paths=PackedStringArray("gateSprite", "gateCollision")]
+[node name="Gate" type="Node2D" unique_id=930881152 node_paths=PackedStringArray("gateSprite", "gateCollision", "gateTrigger")]
 script = ExtResource("1_6vos2")
 gateSprite = NodePath("AnimatedSprite2D")
 gateCollision = NodePath("AnimatedSprite2D/Blocker/CollisionShape2D")
+gateTrigger = NodePath("AnimatedSprite2D/Trigger")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1643011415]
 sprite_frames = SubResource("SpriteFrames_76ii7")
