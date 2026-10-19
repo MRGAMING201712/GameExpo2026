@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://hf5g7c0e6udw"]
+
+[ext_resource type="Texture2D" uid="uid://c45ec7fd83i8b" path="res://assets/art/characters/enemies/enemyPlaceholder.png" id="1_gn2r8"]
+[ext_resource type="PackedScene" uid="uid://dxukcmok1lvd0" path="res://src/components/HealthComponent.tscn" id="2_tfpd0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l0bqs"]
+size = Vector2(63, 63)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q62xx"]
+size = Vector2(63, 63)
+
+[node name="Grunt" type="Node2D" unique_id=1938182177]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=655136554]
+
+[node name="GruntSprite" type="Sprite2D" parent="CharacterBody2D" unique_id=370881792]
+texture = ExtResource("1_gn2r8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1382429886]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_l0bqs")
+
+[node name="HurtBox" type="Area2D" parent="CharacterBody2D" unique_id=1790889837]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="CharacterBody2D/HurtBox" unique_id=1107702847]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_q62xx")
+
+[node name="HealthComponent" parent="." unique_id=937206982 instance=ExtResource("2_tfpd0")]
