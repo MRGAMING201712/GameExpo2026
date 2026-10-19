@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blo4y6gaa1laq"
-path="res://.godot/imported/floor_Test.webp-dd8b5d3d2411085f2c1745d7b923cfa8.ctex"
+uid="uid://cxkfonot45d6a"
+path="res://.godot/imported/floorColoredPlaceholder.png-e63bc6878d0ab13bad5bd47243854de3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/world/testing/floor_Test.webp"
-dest_files=["res://.godot/imported/floor_Test.webp-dd8b5d3d2411085f2c1745d7b923cfa8.ctex"]
+source_file="res://assets/art/world/background/floorColoredPlaceholder.png"
+dest_files=["res://.godot/imported/floorColoredPlaceholder.png-e63bc6878d0ab13bad5bd47243854de3.ctex"]
 
 [params]
 
