@@ -12,14 +12,13 @@ public enum PaintColor
 }
 public partial class PaintManager : Node
 {
-    [Signal] public delegate void CoverageChangedEventHandler(float coverage);
     public static PaintManager Instance { get; private set; }
     [Export] public int cellSize = 4;
     [Export] public float coverageEmitStep = 0.005f; // how much coverage, as a percentage, must change before emitting the CoverageChanged signal
     [Export] public Texture2D [] brushTextures = { };
 
     // Paint Colors
-    Color [] palette =
+    public Color [] palette =
     {
         new Color(0, 0, 0, 0), // Transparent
         Colors.Red,
@@ -158,7 +157,7 @@ public partial class PaintManager : Node
         }
     }
 
-    void StampCircle(Vector2 worldPos, float radius, PaintColor color) // show math behind this
+    void StampCircle(Vector2 worldPos, float radius, PaintColor color)
     {
         Vector2I centerCell = WorldToCell(worldPos);
         int cellRadius = Mathf.CeilToInt(radius / cellSize);
@@ -200,7 +199,7 @@ public partial class PaintManager : Node
         }
 
         lastCoverageEmitted = coverage;
-        EmitSignal(SignalName.CoverageChanged, coverage);
+        EventManager.Instance.EmitSignal(EventManager.SignalName.CoverageChanged, coverage);
     }
 
     // might not need this as we might not need to block areas, if we need it this is how we would do it, but you have to manually size it so that sucks.

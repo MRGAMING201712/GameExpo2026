@@ -1,16 +1,49 @@
 [gd_scene format=3 uid="uid://c7ipfhv4quhfu"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_vwe8v"]
+[ext_resource type="Script" uid="uid://dsnacvu1f8e0k" path="res://src/gameplay/gate/Gate.cs" id="1_6vos2"]
+[ext_resource type="Texture2D" uid="uid://bj3chufeaxxxd" path="res://assets/art/world/props/gate/gate_closed_placeholder.png" id="1_76ii7"]
+[ext_resource type="Texture2D" uid="uid://b1yacn3xpwjk6" path="res://assets/art/world/props/gate/gate_open_placeholder.png" id="2_6vos2"]
 
-[node name="Gate" type="Node2D" unique_id=930881152]
+[sub_resource type="SpriteFrames" id="SpriteFrames_76ii7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_76ii7")
+}],
+"loop": 1,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_6vos2")
+}],
+"loop": 1,
+"name": &"opened",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q84hh"]
+size = Vector2(150, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h5ls0"]
+size = Vector2(150, 60)
+
+[node name="Gate" type="Node2D" unique_id=930881152 node_paths=PackedStringArray("gateSprite", "gateCollision")]
+script = ExtResource("1_6vos2")
+gateSprite = NodePath("AnimatedSprite2D")
+gateCollision = NodePath("AnimatedSprite2D/Blocker/CollisionShape2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1643011415]
-sprite_frames = SubResource("SpriteFrames_vwe8v")
+sprite_frames = SubResource("SpriteFrames_76ii7")
+animation = &"closed"
 
 [node name="Blocker" type="StaticBody2D" parent="AnimatedSprite2D" unique_id=1246051029]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Blocker" unique_id=1246461251]
+shape = SubResource("RectangleShape2D_q84hh")
 
 [node name="Trigger" type="Area2D" parent="AnimatedSprite2D" unique_id=709087463]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Trigger" unique_id=2020984348]
+shape = SubResource("RectangleShape2D_h5ls0")

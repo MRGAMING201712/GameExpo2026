@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://noohadqafi1j"]
+
+[ext_resource type="PackedScene" uid="uid://5561pr8g1tf0" path="res://src/levels/LevelBase.tscn" id="1_rtqgl"]
+[ext_resource type="Texture2D" uid="uid://cxkfonot45d6a" path="res://assets/art/world/background/floorColoredPlaceholder.png" id="2_hitm7"]
+[ext_resource type="PackedScene" uid="uid://q50hbkishrgg" path="res://src/gameplay/player/Player.tscn" id="3_hitm7"]
+
+[node name="Zone" unique_id=1085453153 instance=ExtResource("1_rtqgl")]
+
+[node name="Floor" parent="." index="0" unique_id=112518593]
+position = Vector2(577, 326)
+texture = ExtResource("2_hitm7")
+
+[node name="Gate" parent="." index="4" unique_id=930881152]
+position = Vector2(54, 353)
+rotation = -1.5707964
+
+[node name="Player" parent="." index="5" unique_id=1978226328 instance=ExtResource("3_hitm7")]
+position = Vector2(497, 346)
+
+[node name="Camera2D" type="Camera2D" parent="." index="6" unique_id=1567193707]
+position = Vector2(582, 328)
+scale = Vector2(0.93554515, 0.9059772)
+zoom = Vector2(0.875, 0.875)

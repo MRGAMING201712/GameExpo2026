@@ -17,9 +17,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-PaintBrush="*uid://co240ilad13wx"
-GameManager="*uid://bnu2u5e1n87ev"
 EventManager="*uid://cwofxexu6ud5c"
+GameManager="*uid://bnu2u5e1n87ev"
+PaintBrush="*uid://co240ilad13wx"
 
 [display]
 
@@ -54,7 +54,7 @@ down={
 }
 attack={
 "deadzone": 0.2,
-"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(351, 33),"global_position":Vector2(370, 129),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(226, 42),"global_position":Vector2(245, 138),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
 switchPaintUp={
