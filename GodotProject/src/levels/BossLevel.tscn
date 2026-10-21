@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://nkr3hpgw5v6x"]
+
+[ext_resource type="PackedScene" uid="uid://5561pr8g1tf0" path="res://src/levels/LevelBase.tscn" id="1_5ywdg"]
+[ext_resource type="Texture2D" uid="uid://cxkfonot45d6a" path="res://assets/art/world/background/floorColoredPlaceholder.png" id="2_ffige"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_hitm7"]
+normal = Vector2(0, 1)
+
+[node name="Zone" unique_id=1085453153 instance=ExtResource("1_5ywdg")]
+
+[node name="Floor" parent="." index="0" unique_id=112518593]
+position = Vector2(577, 326)
+texture = ExtResource("2_ffige")
+
+[node name="TopWall" parent="LevelBorder" parent_id_path=PackedInt32Array(437417678) index="0" unique_id=8986453]
+position = Vector2(544, -37)
+shape = SubResource("WorldBoundaryShape2D_hitm7")
+
+[node name="RightWall" parent="LevelBorder" parent_id_path=PackedInt32Array(437417678) index="1" unique_id=298951740]
+position = Vector2(1220, 342)
+
+[node name="BottomWall" parent="LevelBorder" parent_id_path=PackedInt32Array(437417678) index="2" unique_id=480521510]
+position = Vector2(546, 688)
+
+[node name="LeftWall" parent="LevelBorder" parent_id_path=PackedInt32Array(437417678) index="3" unique_id=616019324]
+position = Vector2(-65, 339)
+
+[node name="PlayerSpawn" parent="." index="3" unique_id=1768636704]
+position = Vector2(547, 337)
+
+[node name="Camera2D" type="Camera2D" parent="." index="5" unique_id=1567193707]
+position = Vector2(582.00006, 328.00003)
+scale = Vector2(0.93554515, 0.9059772)
+zoom = Vector2(0.875, 0.875)
+
+[node name="Gate" parent="." index="6" unique_id=930881152]
+position = Vector2(54, 353)
+rotation = -1.5707964
