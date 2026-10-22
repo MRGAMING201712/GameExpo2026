@@ -16,7 +16,7 @@ public partial class MainGame : Node
     [Export] public LevelTransition transitionRoot { get; set; }
     [Export] public PackedScene playerScene;
 
-    
+    public Player player { get; private set; }
 
     public override void _EnterTree()
     {
@@ -28,50 +28,36 @@ public partial class MainGame : Node
         GameManager.Instance.MainGameReady();
     }
 
-    public async Task LoadLevel(PackedScene levelScene, Player player)
+    public void LoadLevel(PackedScene levelScene)
     {
-        await transitionRoot.FadeBackground(true);
+        ClearLevel(keep: player);
 
-        ClearLevel();
         Node2D level = levelScene.Instantiate<Node2D>();
         levelRoot.AddChild(level);
+
         if (player == null)
         {
             player = playerScene.Instantiate<Player>();
-            player.availableColors = Mathf.Min(GameManager.Instance.zoneIndex, 2);
             entityRoot.AddChild(player);
-            player.TeleportToSpawnPoint(level.GetNode<Marker2D>("PlayerSpawn"));
         }
 
-        await transitionRoot.FadeBackground(false);
+        player.availableColors = Mathf.Min(GameManager.Instance.zoneIndex, 2);
+        player.TeleportToSpawnPoint(level.GetNode<Marker2D>("PlayerSpawn"));
     }
 
-
-    public void ClearLevel()
+    public void ClearLevel(Node keep = null)
     {
-        foreach(Node2D entity in entityRoot.GetChildren())
+        foreach (Node root in new Node[] { entityRoot, levelRoot, groundVFXRoot, effectRoot })
         {
-            entityRoot.RemoveChild(entity);
-            entity.QueueFree();
+            foreach (Node child in root.GetChildren())
+            {
+                if (child == keep)
+                {
+                  continue; // don't delete the player  
+                } 
+                root.RemoveChild(child);
+                child.QueueFree();
+            }
         }
-
-        foreach(Node2D level in levelRoot.GetChildren())
-        {
-            levelRoot.RemoveChild(level);
-            level.QueueFree();
-        }
-
-        foreach(Node2D groundVFX in groundVFXRoot.GetChildren())
-        {
-            groundVFXRoot.RemoveChild(groundVFX);
-            groundVFX.QueueFree();
-        }
-
-        foreach(Node2D effect in effectRoot.GetChildren())
-        {
-            effectRoot.RemoveChild(effect);
-            effect.QueueFree();
-        }
-
     }
 }

@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 
 public partial class Player : CharacterBody2D
@@ -8,15 +9,16 @@ public partial class Player : CharacterBody2D
 
     // Movement
     [Export] public float speed { get; set; } = 300.0f;
-    [Export] public float acceleration { get; set; } = 1800.0f; // how fast to reach top speed
-    [Export] public float friction { get; set; } = 2200.0f; // how fast to stop
+    [Export] public float acceleration { get; set; } = 1800.0f;
+    [Export] public float friction { get; set; } = 2200.0f;
 
     // painting(attacking)
     [Export] public float arcLength = 1.2f;
     [Export] public float arcDistanceFromPlayer = 56f;
     [Export] public float timeForSwing = 1f;
     [Export] public float paintSize = 18f;
-    private bool bIsSwinging = false;    
+    private bool bIsSwinging = false;
+    private Tween swingTween;
     private float aim;
     private Vector2 lastTipLocation;
     [Export] public Node2D brushRoot;
@@ -41,6 +43,11 @@ public partial class Player : CharacterBody2D
     }
     public override void _Input(InputEvent @event)
     {
+        // No swinging or color switching during transitions, menus, death, etc.
+        if (!GameManager.Instance.CanControlPlayer)
+        {
+            return;  
+        } 
 
         if (@event.IsActionPressed("attack") && !bIsSwinging)
         {
@@ -49,9 +56,9 @@ public partial class Player : CharacterBody2D
             aim = (GetGlobalMousePosition() - GlobalPosition).Angle();
             lastTipLocation = TipAt(-arcLength);
 
-            Tween tween = CreateTween();
-            tween.TweenMethod(Callable.From<float>(SwingStep), -arcLength, arcLength, timeForSwing).SetTrans(Tween.TransitionType.Cubic).SetEase(Tween.EaseType.Out);
-            tween.TweenCallback(Callable.From(EndSwing));
+            swingTween = CreateTween();
+            swingTween.TweenMethod(Callable.From<float>(SwingStep), -arcLength, arcLength, timeForSwing).SetTrans(Tween.TransitionType.Cubic).SetEase(Tween.EaseType.Out);
+            swingTween.TweenCallback(Callable.From(EndSwing));
         }
 
         if(@event.IsActionPressed("switchPaintUp"))
@@ -77,11 +84,15 @@ public partial class Player : CharacterBody2D
             currentColor--;
             brushTip.Modulate = PaintManager.Instance.palette[currentColor + 1]; // cuz palette has transluscent as 0
         }
-    
-    
+
     }
     public override void _PhysicsProcess(double delta)
     {
+        if (!GameManager.Instance.CanControlPlayer)
+        {
+            Velocity = Vector2.Zero; // stop movement during transitions
+            return;
+        }
         Vector2 inputDirection = Input.GetVector("left", "right", "up", "down");
         
         if(inputDirection != Vector2.Zero)
@@ -97,7 +108,12 @@ public partial class Player : CharacterBody2D
 
     public void TeleportToSpawnPoint(Marker2D playerSpawn)
     {
-        this.GlobalPosition = playerSpawn.GlobalPosition;
+        // stop swinging during level transitions
+        swingTween?.Kill();
+        EndSwing();
+
+        Velocity = Vector2.Zero;
+        GlobalPosition = playerSpawn.GlobalPosition;
     }
     private void SwingStep(float offset)
     {            

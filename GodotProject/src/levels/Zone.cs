@@ -10,8 +10,6 @@ public partial class Zone : Node2D
         Rect2 zoneRect = new Rect2(floor.GlobalPosition + rect.Position, rect.Size);
         PaintManager.Instance.SetupZone(zoneRect);
 
-        ((ShaderMaterial)floor.Material).SetShaderParameter("paint_mask", PaintManager.Instance.maskTexture);
-
         foreach(Node child in GetNode("%Buildings").GetChildren())
         {
             CollisionShape2D collisionShape = child.GetNodeOrNull<CollisionShape2D>("CollisionShape2D");

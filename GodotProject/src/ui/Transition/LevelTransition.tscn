@@ -11,7 +11,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dwvy3")
 background = NodePath("ColorRect")
-fadeOutDuration = 3.0
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1350478382]
 layout_mode = 1

@@ -8,6 +8,8 @@ public partial class Gate : Node2D
     [Export] public Area2D gateTrigger {get; set;}
 
     private bool bIsOpen = false;
+    private bool bUsed = false;
+
     public override void _Ready()
     {
         EventManager.Instance.GateOpened += OnGateOpened;
@@ -22,15 +24,17 @@ public partial class Gate : Node2D
     public void OnGateOpened()
     {
         gateSprite.Animation = "opened";
-        gateCollision.Disabled = true;
+        gateCollision.SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
         bIsOpen = true;
     }
 
     public void OnBodyEntered(Node2D body)
     {
-        if(bIsOpen && body is Player)
-        {    
-            Callable.From(() => EventManager.Instance.EmitSignal(EventManager.SignalName.TransitionLevels)).CallDeferred();
-        }
+        if (!bIsOpen || bUsed || body is not Player)
+        {
+          return;  
+        } 
+        bUsed = true;
+        Callable.From(() => EventManager.Instance.EmitSignal(EventManager.SignalName.TransitionLevels)).CallDeferred();
     }
 }
