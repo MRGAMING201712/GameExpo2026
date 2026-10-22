@@ -59,5 +59,3 @@ grow_vertical = 2
 
 [node name="LevelTransition" parent="TransitionLayer/TransitionRoot" unique_id=1783321355 instance=ExtResource("3_hwb6x")]
 layout_mode = 1
-fadeInDuration = 2.0
-fadeOutDuration = 2.0

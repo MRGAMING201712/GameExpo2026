@@ -1,16 +1,14 @@
 [gd_scene format=3 uid="uid://5561pr8g1tf0"]
 
 [ext_resource type="Script" uid="uid://bgf41gh6yknno" path="res://src/levels/Zone.cs" id="1_qbtev"]
-[ext_resource type="Shader" uid="uid://dj0nehvhaid2m" path="res://src/shaders/paintFloor.gdshader" id="2_qyaep"]
+[ext_resource type="Shader" uid="uid://dfhqc7ae3o56d" path="res://src/shaders/world_reveal.gdshader" id="2_j0ymd"]
 [ext_resource type="PackedScene" uid="uid://dait3y5nl7bnw" path="res://src/gameplay/spawner/PlayerSpawn.tscn" id="4_adw88"]
 [ext_resource type="PackedScene" uid="uid://tpmfow63nch5" path="res://src/gameplay/spawner/EnemySpawner.tscn" id="5_j0ymd"]
 [ext_resource type="PackedScene" uid="uid://c7ipfhv4quhfu" path="res://src/gameplay/gate/Gate.tscn" id="6_eptvw"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j0uy1"]
-shader = ExtResource("2_qyaep")
-shader_parameter/tint_strength = 0.65
-shader_parameter/brightness = 1.6
-shader_parameter/rim_darkness = 0.35
+shader = ExtResource("2_j0ymd")
+shader_parameter/tint_strength = 0.400000019
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_j0ymd"]
 normal = Vector2(0, 1)

@@ -7,13 +7,17 @@ public partial class GameManager : Node
     public enum GameState
     {
         MainMenu,
+        Transitioning,
         Playing,
         GateOpen,
         BossFight,
         Won,
         Lost
     }
-    public GameState currentState { get;  set; } = GameState.MainMenu ; // change this to main menu when done testing
+    public GameState currentState { get;  set; } = GameState.MainMenu ;
+
+    // True only when the player should move, swing and switch colors
+    public bool CanControlPlayer => currentState is GameState.Playing or GameState.GateOpen or GameState.BossFight;
 
     // Export variables
     [Export] public float coverageToWin { get; set; } = 0.8f;
@@ -26,7 +30,8 @@ public partial class GameManager : Node
     public int kills {get; set;}
     public int zoneIndex {get; set;}
     public int enemiesAlive {get; set;} // unsure if we will have ui for enemies alive, but if we do this is the counter
-    public Player player = null;
+
+    private bool bIsTransitioning = false;
 
 
     public override void _Ready()
@@ -47,30 +52,50 @@ public partial class GameManager : Node
         kills = 0;
         zoneIndex = 0;
         enemiesAlive = 0;
+        bIsTransitioning = false;
         GetTree().Paused = false;
     }
 
     public async void GoToLevel(PackedScene newLevel, GameState newState)
     {
-        currentState = GameState.MainMenu;
+        if (bIsTransitioning) return;          // never run two transitions at once
+        bIsTransitioning = true;
+
+        currentState = GameState.Transitioning; // blocks input + gate logic right away
         enemiesAlive = 0;
 
-        await MainGame.Instance.LoadLevel(newLevel, player);
-        currentState = newState;
+        LevelTransition transition = MainGame.Instance.transitionRoot;
+
+        // 1. Screen goes fully black
+        await transition.FadeToBlack();
+
+        // 2. Swap the level and move the player while it's black
+        MainGame.Instance.LoadLevel(newLevel);
+
+        // 3. Hold on black: let the new level run _Ready and physics/camera settle
+        await ToSignal(GetTree(), SceneTree.SignalName.PhysicsFrame);
+        await ToSignal(GetTree().CreateTimer(transition.holdDuration), SceneTreeTimer.SignalName.Timeout);
+
         EventManager.Instance.EmitSignal(EventManager.SignalName.ZoneStarted, zoneIndex);
+
+        // 4. Reveal, and only then give control back
+        await transition.FadeFromBlack();
+
+        currentState = newState;
+        bIsTransitioning = false;
     }
 
     public void OnTransitionLevels()
     {
-        if(zoneIndex + 1 >= levelScenes.Length)
-        {
+        if (bIsTransitioning) return;          // ignore repeat gate triggers
+
+        zoneIndex++;
+        if (zoneIndex >= levelScenes.Length)
             GoToLevel(bossLevelScene, GameState.BossFight);
-            zoneIndex ++;
-            return;
-        }
-        zoneIndex ++;
-        GoToLevel(levelScenes[zoneIndex], GameState.Playing);
+        else
+            GoToLevel(levelScenes[zoneIndex], GameState.Playing);
     }
+
     public void OnCoverageChanged(float coverage)
     {
         GD.Print(coverage);
