@@ -122,7 +122,8 @@ public partial class PaintManager : Node
         image = Image.CreateEmpty(width, height, false, Image.Format.Rgba8);
         image.Fill(palette[0]);
         maskTexture = ImageTexture.CreateFromImage(image);
-
+        RenderingServer.GlobalShaderParameterSet("paint_mask", maskTexture);
+        RenderingServer.GlobalShaderParameterSet("paint_zone",new Vector4(zoneRect.Position.X, zoneRect.Position.Y, zoneRect.Size.X, zoneRect.Size.Y)); 
         EmitCoverage(true);
     }
 

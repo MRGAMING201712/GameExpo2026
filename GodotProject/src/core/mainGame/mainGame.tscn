@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://jucg77hmkrba"]
 
 [ext_resource type="Script" uid="uid://u0xb2y8ldtkk" path="res://src/core/mainGame/MainGame.cs" id="1_o4h4p"]
+[ext_resource type="PackedScene" uid="uid://q50hbkishrgg" path="res://src/gameplay/player/Player.tscn" id="2_jj3k5"]
+[ext_resource type="PackedScene" uid="uid://p5cug0cwewxw" path="res://src/ui/Transition/LevelTransition.tscn" id="3_hwb6x"]
 
 [node name="MainGame" type="Node" unique_id=132216327 node_paths=PackedStringArray("levelRoot", "groundVFXRoot", "entityRoot", "effectRoot", "hudRoot", "pauseRoot", "transitionRoot")]
 script = ExtResource("1_o4h4p")
@@ -10,7 +12,8 @@ entityRoot = NodePath("World/EntityRoot")
 effectRoot = NodePath("World/EffectRoot")
 hudRoot = NodePath("HudLayer/HudRoot")
 pauseRoot = NodePath("PauseLayer/PauseRoot")
-transitionRoot = NodePath("TransitionLayer/TransitionRoot")
+transitionRoot = NodePath("TransitionLayer/TransitionRoot/LevelTransition")
+playerScene = ExtResource("2_jj3k5")
 
 [node name="Systems" type="Node" parent="." unique_id=907119562]
 
@@ -48,6 +51,11 @@ layer = 100
 
 [node name="TransitionRoot" type="Control" parent="TransitionLayer" unique_id=390701433]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelTransition" parent="TransitionLayer/TransitionRoot" unique_id=1783321355 instance=ExtResource("3_hwb6x")]
+layout_mode = 1

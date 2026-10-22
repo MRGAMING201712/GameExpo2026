@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://bix31i48erx3m"]
+
+[ext_resource type="Script" uid="uid://da07hb8al8h4q" path="res://src/ui/mainMenu/ButtonTest.cs" id="1_3hd5p"]
+[ext_resource type="PackedScene" uid="uid://jucg77hmkrba" path="res://src/core/mainGame/mainGame.tscn" id="2_v4ns1"]
+
+[node name="MainMenu" type="Node2D" unique_id=1370688210]
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1356053144]
+offset_right = 1158.0
+offset_bottom = 653.0
+
+[node name="Button" type="Button" parent="." unique_id=212309620]
+offset_left = 543.0
+offset_top = 346.0
+offset_right = 551.0
+offset_bottom = 354.0
+text = "START GAME"
+script = ExtResource("1_3hd5p")
+mainGame = ExtResource("2_v4ns1")
+
+[node name="Label" type="Label" parent="." unique_id=123509199]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 552.0
+offset_top = 170.0
+offset_right = 656.0
+offset_bottom = 191.0
+grow_horizontal = 2
+text = "GAME OVER"

@@ -15,6 +15,9 @@ public partial class EventManager : Node
     // Gate Signal
     [Signal] public delegate void GateOpenedEventHandler();
 
+    // Level Signals
+    [Signal] public delegate void ZoneStartedEventHandler(int zoneIndex); // ui might need to read this
+    [Signal] public delegate void TransitionLevelsEventHandler();
 
 
 
