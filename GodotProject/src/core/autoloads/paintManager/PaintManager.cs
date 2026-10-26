@@ -99,7 +99,10 @@ public partial class PaintManager : Node
         for (int y = 0; y < size; y++)
         for (int x = 0; x < size; x++)
         {
-            if (stamp.GetPixel(x, y).A < 0.5f) continue;
+            if (stamp.GetPixel(x, y).A < 0.5f)
+            {
+              continue;  
+            } 
             SetCell(topLeft.X + x, topLeft.Y + y, color);
         }
         imageChanged = true;
@@ -203,7 +206,7 @@ public partial class PaintManager : Node
         EventManager.Instance.EmitSignal(EventManager.SignalName.CoverageChanged, coverage);
     }
 
-    // might not need this as we might not need to block areas, if we need it this is how we would do it, but you have to manually size it so that sucks.
+    // might not need this as we might not need to block areas, if we need it this is how we would do it
     public void MarkBlockedArea(Rect2 worldRect)
     {
         Vector2I minCell = WorldToCell(worldRect.Position);
