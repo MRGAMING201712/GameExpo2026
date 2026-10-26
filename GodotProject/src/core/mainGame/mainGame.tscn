@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://jucg77hmkrba"]
 
 [ext_resource type="Script" uid="uid://u0xb2y8ldtkk" path="res://src/core/mainGame/MainGame.cs" id="1_o4h4p"]
-[ext_resource type="PackedScene" uid="uid://q50hbkishrgg" path="res://src/gameplay/player/Player.tscn" id="2_jj3k5"]
 [ext_resource type="PackedScene" uid="uid://p5cug0cwewxw" path="res://src/ui/Transition/LevelTransition.tscn" id="3_hwb6x"]
 
 [node name="MainGame" type="Node" unique_id=132216327 node_paths=PackedStringArray("levelRoot", "groundVFXRoot", "entityRoot", "effectRoot", "hudRoot", "pauseRoot", "transitionRoot")]
@@ -13,7 +12,6 @@ effectRoot = NodePath("World/EffectRoot")
 hudRoot = NodePath("HudLayer/HudRoot")
 pauseRoot = NodePath("PauseLayer/PauseRoot")
 transitionRoot = NodePath("TransitionLayer/TransitionRoot/LevelTransition")
-playerScene = ExtResource("2_jj3k5")
 
 [node name="Systems" type="Node" parent="." unique_id=907119562]
 
