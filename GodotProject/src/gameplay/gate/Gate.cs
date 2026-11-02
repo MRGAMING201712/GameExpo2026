@@ -6,7 +6,6 @@ public partial class Gate : Node2D
     [Export] public AnimatedSprite2D gateSprite { get; set; }
     [Export] public CollisionShape2D gateCollision { get; set; }
     [Export] public Area2D gateTrigger {get; set;}
-
     private bool bIsOpen = false;
     private bool bUsed = false;
 

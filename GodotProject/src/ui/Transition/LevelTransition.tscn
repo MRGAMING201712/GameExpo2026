@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://p5cug0cwewxw"]
 
-[ext_resource type="Script" uid="uid://bpiwhcf4kuipm" path="res://src/ui/Transition/LevelTransition.cs" id="1_dwvy3"]
+[ext_resource type="Script" uid="uid://bpiwhcf4kuipm" path="res://src/ui/transition/LevelTransition.cs" id="1_dwvy3"]
 
 [node name="LevelTransition" type="Control" unique_id=1783321355 node_paths=PackedStringArray("background")]
 layout_mode = 3

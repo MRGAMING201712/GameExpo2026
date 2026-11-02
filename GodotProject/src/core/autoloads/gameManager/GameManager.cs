@@ -17,7 +17,7 @@ public partial class GameManager : Node
     public GameState currentState { get;  set; } = GameState.MainMenu ;
 
     // True only when the player should move, swing and switch colors
-    public bool CanControlPlayer => currentState is GameState.Playing or GameState.GateOpen or GameState.BossFight;
+    public bool bCanControlPlayer => currentState is GameState.Playing or GameState.GateOpen or GameState.BossFight;
 
     // Export variables
     [Export] public float coverageToWin { get; set; } = 0.8f;

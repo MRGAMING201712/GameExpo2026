@@ -44,7 +44,7 @@ public partial class Player : CharacterBody2D
     public override void _Input(InputEvent @event)
     {
         // No swinging or color switching during transitions, menus, death, etc.
-        if (!GameManager.Instance.CanControlPlayer)
+        if (!GameManager.Instance.bCanControlPlayer)
         {
             return;  
         } 
@@ -88,7 +88,7 @@ public partial class Player : CharacterBody2D
     }
     public override void _PhysicsProcess(double delta)
     {
-        if (!GameManager.Instance.CanControlPlayer)
+        if (!GameManager.Instance.bCanControlPlayer)
         {
             Velocity = Vector2.Zero; // stop movement during transitions
             return;
