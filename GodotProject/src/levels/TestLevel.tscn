@@ -6,6 +6,43 @@
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_hitm7"]
 normal = Vector2(0, 1)
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_l0bqs"]
+vertices = PackedVector2Array(909, 263, 1184, 263, 905, 265, 462.5, 274, 1184, 410.5, 918.5, 410.5, 630, 265, 1199.9688, -16.007813, 1199.0313, 666, 1184, 39, 1184, 664, -44.046875, 666, 918.5, 664, 231, 1, 231, 274, 226, 263, 226, 31, 903.5, 654.5, 670, 654.5, 284, 652, -10.5, 652, 903.5, 431, 670, 431, 464.6328, 535, 456.52344, 504.6797, 905, 18, 909, 39, -45.9375, -16.976563, -28, 263, 456.52344, 565.3203, 462.5, 1, 630, 18, 284, 420.5, 103, 420.5, 103, 272, 7.5, 272, 7.5, 420.5, -10.5, 420.5, 434.3203, 482.4922, 406.3672, 475, 347.6328, 475, 319.6797, 482.4922, -28, 31, 434.3203, 587.52344, 406.3672, 595, 347.6328, 595, 319.6797, 587.52344, 297.4922, 565.3203, 289.35938, 535, 297.4922, 504.6797)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2), PackedInt32Array(3, 2, 1, 4, 5), PackedInt32Array(6, 2, 3), PackedInt32Array(7, 8, 1, 9), PackedInt32Array(10, 8, 11, 12), PackedInt32Array(13, 14, 15, 16), PackedInt32Array(17, 12, 11, 18), PackedInt32Array(19, 18, 11, 20), PackedInt32Array(5, 12, 17, 21), PackedInt32Array(22, 18, 23, 24, 3), PackedInt32Array(0, 2, 25, 26), PackedInt32Array(20, 11, 27, 28), PackedInt32Array(29, 23, 18), PackedInt32Array(6, 3, 30, 31), PackedInt32Array(32, 33, 34, 14), PackedInt32Array(35, 36, 37, 28), PackedInt32Array(8, 10, 4), PackedInt32Array(1, 8, 4), PackedInt32Array(3, 5, 21, 22), PackedInt32Array(3, 24, 38, 14), PackedInt32Array(14, 38, 39), PackedInt32Array(14, 39, 40), PackedInt32Array(14, 40, 41, 32), PackedInt32Array(13, 16, 42, 27), PackedInt32Array(9, 26, 25, 7), PackedInt32Array(43, 29, 18), PackedInt32Array(43, 18, 19, 44), PackedInt32Array(45, 44, 19), PackedInt32Array(46, 45, 19), PackedInt32Array(47, 46, 19), PackedInt32Array(28, 15, 14, 34), PackedInt32Array(48, 47, 19), PackedInt32Array(48, 19, 32), PackedInt32Array(49, 48, 32), PackedInt32Array(41, 49, 32), PackedInt32Array(28, 34, 35), PackedInt32Array(7, 25, 31, 30), PackedInt32Array(27, 7, 30, 13), PackedInt32Array(27, 42, 28), PackedInt32Array(20, 28, 37)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-64, -35, -62, 684, 1217, 684, 1218, -34)])
+parsed_geometry_type = 1
+parsed_collision_mask = 4294967042
+source_geometry_group_name = &"Obstacles"
+agent_radius = 18.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l0bqs"]
+size = Vector2(218, 196)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lr00t"]
+radius = 42.0
+height = 138.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rmvbg"]
+size = Vector2(195.5, 237)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ahgx5"]
+size = Vector2(258.5, 195.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aqcro"]
+size = Vector2(239, 211)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_11e6d"]
+size = Vector2(197.5, 187.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hy8jv"]
+size = Vector2(239, 188)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q8v05"]
+size = Vector2(229.5, 217.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q62xx"]
+size = Vector2(59.5, 125)
+
 [node name="Zone" unique_id=1085453153 instance=ExtResource("1_rtqgl")]
 
 [node name="Floor" parent="." index="0" unique_id=112518593]
@@ -36,3 +73,47 @@ zoom = Vector2(0.875, 0.875)
 [node name="Gate" parent="." index="6" unique_id=930881152]
 position = Vector2(54, 353)
 rotation = -1.5707964
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="7" unique_id=1580572822]
+navigation_polygon = SubResource("NavigationPolygon_l0bqs")
+navigation_layers = 2
+
+[node name="Obstacles" type="StaticBody2D" parent="NavigationRegion2D" index="0" unique_id=1740889284]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/Obstacles" index="0" unique_id=2095365330]
+position = Vector2(99, 147)
+shape = SubResource("RectangleShape2D_l0bqs")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="NavigationRegion2D/Obstacles" index="1" unique_id=1433423782]
+position = Vector2(377, 535)
+rotation = 1.5707964
+shape = SubResource("CapsuleShape2D_lr00t")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="NavigationRegion2D/Obstacles" index="2" unique_id=1303678549]
+position = Vector2(346.75, 137.5)
+shape = SubResource("RectangleShape2D_rmvbg")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="NavigationRegion2D/Obstacles" index="3" unique_id=728297677]
+position = Vector2(136.75, 536.25)
+shape = SubResource("RectangleShape2D_ahgx5")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="NavigationRegion2D/Obstacles" index="4" unique_id=1764339437]
+position = Vector2(767.5, 141.5)
+shape = SubResource("RectangleShape2D_aqcro")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="NavigationRegion2D/Obstacles" index="5" unique_id=2064056054]
+position = Vector2(786.75, 542.75)
+shape = SubResource("RectangleShape2D_11e6d")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="NavigationRegion2D/Obstacles" index="6" unique_id=762106195]
+position = Vector2(1046.5, 151)
+shape = SubResource("RectangleShape2D_hy8jv")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="NavigationRegion2D/Obstacles" index="7" unique_id=453179536]
+position = Vector2(1051.25, 537.25)
+shape = SubResource("RectangleShape2D_q8v05")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="NavigationRegion2D/Obstacles" index="8" unique_id=1348451159]
+position = Vector2(55.25, 352.5)
+shape = SubResource("RectangleShape2D_q62xx")

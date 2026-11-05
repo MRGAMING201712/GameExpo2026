@@ -72,7 +72,7 @@ public partial class PaintManager : Node
         coverage = paintable > 0 ? (float)paintedCount / paintable : 0f;
         EmitCoverage();
     }
-    //test
+    
     public void Paint(Vector2 worldPos, float radius, PaintColor color)
     {
         if (color == PaintColor.None) 
@@ -242,18 +242,18 @@ public partial class PaintManager : Node
 
         Image brushImage = (Image)brushSources[brushIndex].Duplicate();
         brushImage.Resize(size, size, Image.Interpolation.Bilinear); // switch interpolation for testing
-        if((variation & 1) != 0)
+        if (GD.Randi() % 2 == 0) 
         {
             brushImage.FlipX();
         }
-        if((variation & 2) != 0)
+        if (GD.Randi() % 2 == 0)
         {
-            brushImage.FlipY();
+            brushImage.FlipY();            
         }
-        if((variation & 4) != 0)
+        if (GD.Randi() % 2 == 0)
         {
-            brushImage.Rotate90(ClockDirection.Clockwise);
-        }
+            brushImage.Rotate90(ClockDirection.Clockwise);  
+        } 
 
         Color tint = palette[(int)color];
         for(int y = 0; y < size; y++)
