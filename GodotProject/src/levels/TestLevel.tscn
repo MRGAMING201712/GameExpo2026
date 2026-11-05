@@ -79,7 +79,7 @@ navigation_polygon = SubResource("NavigationPolygon_l0bqs")
 navigation_layers = 2
 
 [node name="Obstacles" type="StaticBody2D" parent="NavigationRegion2D" index="0" unique_id=1740889284]
-collision_layer = 2
+collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/Obstacles" index="0" unique_id=2095365330]
 position = Vector2(99, 147)

@@ -16,6 +16,7 @@ radius = 30.0
 radius = 30.0
 
 [node name="Player" type="CharacterBody2D" unique_id=12451452 node_paths=PackedStringArray("health", "brushRoot", "brushTip")]
+collision_layer = 3
 script = ExtResource("1_km0ph")
 health = NodePath("HealthComponent")
 timeForSwing = 0.2
