@@ -17,7 +17,6 @@ size = Vector2(63, 63)
 texture = ExtResource("1_gn2r8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1382429886]
-position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_l0bqs")
 
 [node name="HurtBox" type="Area2D" parent="CharacterBody2D" unique_id=1790889837]
