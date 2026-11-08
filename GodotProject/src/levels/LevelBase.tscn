@@ -6,10 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://tpmfow63nch5" path="res://src/gameplay/spawner/EnemySpawner.tscn" id="5_j0ymd"]
 [ext_resource type="PackedScene" uid="uid://c7ipfhv4quhfu" path="res://src/gameplay/gate/Gate.tscn" id="6_eptvw"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_j0uy1"]
-shader = ExtResource("2_j0ymd")
-shader_parameter/tint_strength = 0.400000019
-
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_j0ymd"]
 normal = Vector2(0, 1)
 
@@ -21,13 +17,18 @@ normal = Vector2(0, 1)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_nswcu"]
 normal = Vector2(0, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hqaei"]
+shader = ExtResource("2_j0ymd")
+shader_parameter/tint_strength = 0.25
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_adw88"]
+vertices = PackedVector2Array(303.02344, -230.00781, 303.97656, 248, -22, 248, 152, -52.5, -90.5, -230.45313, -90.5, -52.5, -342, -53, -342, -201, -560.03125, -230.97656, -522.5, -201, -561.96094, 248, -522.5, -53, -361.5, 248, -361.5, 55, -22, 55, 152, -230.17969)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 4, 7, 9), PackedInt32Array(10, 8, 9, 11), PackedInt32Array(12, 10, 11, 13), PackedInt32Array(14, 13, 11, 6, 5), PackedInt32Array(14, 5, 3), PackedInt32Array(3, 15, 0), PackedInt32Array(14, 3, 2)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-570, -241, -572, 258, 314, 258, 313, -240)])
+parsed_geometry_type = 1
+
 [node name="Zone" type="Node2D" unique_id=1085453153]
 script = ExtResource("1_qbtev")
-
-[node name="Floor" type="Sprite2D" parent="." unique_id=112518593]
-unique_name_in_owner = true
-material = SubResource("ShaderMaterial_j0uy1")
-position = Vector2(623, 341)
 
 [node name="LevelBorder" type="StaticBody2D" parent="." unique_id=437417678]
 
@@ -52,11 +53,26 @@ rotation = -1.5707964
 scale = Vector2(0.9957944, 1)
 shape = SubResource("WorldBoundaryShape2D_nswcu")
 
-[node name="Buildings" type="Node2D" parent="." unique_id=819681681]
-unique_name_in_owner = true
-
 [node name="PlayerSpawn" parent="." unique_id=1768636704 instance=ExtResource("4_adw88")]
 
 [node name="EnemySpawner" parent="." unique_id=1678469005 instance=ExtResource("5_j0ymd")]
 
 [node name="Gate" parent="." unique_id=930881152 instance=ExtResource("6_eptvw")]
+z_index = 1
+
+[node name="Floor" type="TileMapLayer" parent="." unique_id=129545228]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_hqaei")
+
+[node name="Buildings" type="TileMapLayer" parent="." unique_id=533313538]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_hqaei")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=271845211]
+position = Vector2(125, 18)
+navigation_polygon = SubResource("NavigationPolygon_adw88")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="NavigationRegion2D" unique_id=601108160]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=872182462]
+position = Vector2(-1, -1)

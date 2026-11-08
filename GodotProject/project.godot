@@ -86,6 +86,10 @@ rendering_device/driver.windows="d3d12"
 
 [shader_globals]
 
+world_reveal={
+"type": "float",
+"value": 0.0
+}
 paint_mask={
 "type": "sampler2D",
 "value": ""

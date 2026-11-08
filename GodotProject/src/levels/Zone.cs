@@ -1,25 +1,38 @@
 using Godot;
-using System;
 
 public partial class Zone : Node2D
 {
     public override void _Ready()
     {
-        Sprite2D floor = GetNode<Sprite2D>("%Floor");
-        Rect2 rect = floor.GetRect();
-        Rect2 zoneRect = new Rect2(floor.GlobalPosition + rect.Position, rect.Size);
-        PaintManager.Instance.SetupZone(zoneRect);
+        Setup();
+    }
 
-        foreach(Node child in GetNode("%Buildings").GetChildren())
+    public void Setup()
+    {
+        TileMapLayer floor = GetNode<TileMapLayer>("%Floor");
+        TileMapLayer buildings = GetNode<TileMapLayer>("%Buildings");
+
+        PaintManager.Instance.SetupZone(GetLayerRect(floor));
+
+        foreach (Vector2I cell in buildings.GetUsedCells())
         {
-            CollisionShape2D collisionShape = child.GetNodeOrNull<CollisionShape2D>("CollisionShape2D");
-            if(collisionShape != null && collisionShape.Shape is RectangleShape2D rectangleShape)
-            {
-                Vector2 size = rectangleShape.Size;
-                PaintManager.Instance.MarkBlockedArea(new Rect2(collisionShape.GlobalPosition - size / 2, size));
-            }
+            PaintManager.Instance.MarkBlockedArea(GetCellRect(buildings, cell));
         }
     }
 
-    
+    private static Rect2 GetCellRect(TileMapLayer layer, Vector2I cell)
+    {
+        Vector2 tileSize = (Vector2)layer.TileSet.TileSize * layer.GlobalScale;
+        Vector2 center = layer.ToGlobal(layer.MapToLocal(cell));
+        return new Rect2(center - tileSize / 2f, tileSize);
+    }
+
+    private static Rect2 GetLayerRect(TileMapLayer layer)
+    {
+        Rect2I used = layer.GetUsedRect();
+        Vector2 tileSize = (Vector2)layer.TileSet.TileSize * layer.GlobalScale;
+        Vector2 topLeft = layer.ToGlobal(layer.MapToLocal(used.Position)) - tileSize / 2f;
+        Vector2 size = new Vector2(used.Size.X, used.Size.Y) * tileSize;
+        return new Rect2(topLeft, size);
+    }
 }

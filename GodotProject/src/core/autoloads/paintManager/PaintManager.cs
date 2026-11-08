@@ -94,23 +94,31 @@ public partial class PaintManager : Node
         Vector2I center = WorldToCell(worldPos);
         Vector2I topLeft = center - new Vector2I(size / 2, size / 2);
 
-        image.BlendRect(stamp, new Rect2I(Vector2I.Zero, stamp.GetSize()), topLeft);
-
         for (int y = 0; y < size; y++)
         for (int x = 0; x < size; x++)
         {
             if (stamp.GetPixel(x, y).A < 0.5f)
             {
-              continue;  
-            } 
-            SetCell(topLeft.X + x, topLeft.Y + y, color);
+                continue;
+            }
+
+            int cellX = topLeft.X + x;
+            int cellY = topLeft.Y + y;
+            if (cellX < 0 || cellX >= width || cellY < 0 || cellY >= height)
+            {
+                continue;
+            }
+
+            image.SetPixel(cellX, cellY, palette[(int)color]);
+            SetCell(cellX, cellY, color);
         }
         imageChanged = true;
     }
 
     // makes a blank canvas when scene loads
     public void SetupZone(Rect2 inZoneRect)
-    {
+    {  
+        imageChanged = false;  
         zoneRect = inZoneRect;
         width = Mathf.CeilToInt(zoneRect.Size.X / cellSize);
         height = Mathf.CeilToInt(zoneRect.Size.Y / cellSize);
@@ -210,21 +218,30 @@ public partial class PaintManager : Node
     public void MarkBlockedArea(Rect2 worldRect)
     {
         Vector2I minCell = WorldToCell(worldRect.Position);
-        Vector2I maxCell = WorldToCell(worldRect.End);
+        Vector2I maxCell = WorldToCell(worldRect.End - new Vector2(0.01f, 0.01f));
 
-        for(int y = Mathf.Max(minCell.Y, 0); y <= Mathf.Min(maxCell.Y, height); y++)
+        int startX = Mathf.Max(minCell.X, 0);
+        int endX = Mathf.Min(maxCell.X, width - 1);
+        int startY = Mathf.Max(minCell.Y, 0);
+        int endY = Mathf.Min(maxCell.Y, height - 1);
+
+        for (int y = startY; y <= endY; y++)
         {
-            for(int x = Mathf.Max(minCell.X, 0); x <= Mathf.Min(maxCell.X, width); x++)
+            for (int x = startX; x <= endX; x++)
             {
                 int index = y * width + x;
-                if(blocked[index])
+                if (index < 0 || index >= blocked.Length)
+                {
+                    continue;
+                }
+                if (blocked[index])
                 {
                     continue;
                 }
 
                 blocked[index] = true;
                 paintable--;
-                if(cells[index] != 0)
+                if (cells[index] != PaintColor.None)
                 {
                     paintedCount--;
                 }
