@@ -43,7 +43,7 @@ public partial class Player : CharacterBody2D
 	}
 	public override void _Input(InputEvent @event)
 	{
-		// No swinging or color switching during transitions, menus, death, etc.
+		// No swinging or color switching during transitions
 		if (!GameManager.Instance.bCanControlPlayer)
 		{
 			return;  
