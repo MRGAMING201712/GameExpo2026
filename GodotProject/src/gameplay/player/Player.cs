@@ -34,18 +34,18 @@ public partial class Player : CharacterBody2D
 		brushTip.Modulate = PaintManager.Instance.palette[currentColor + 1]; // cuz palette has transluscent as 0
 	}
 
-    public override void _ExitTree()
-    {
-        health.HealthChanged -= OnHealthChanged;
-        health.Died -= OnDied;
-    }
-    public override void _Input(InputEvent @event)
-    {
-        // No swinging or color switching during transitions
-        if (!GameManager.Instance.bCanControlPlayer)
-        {
-            return;  
-        } 
+	public override void _ExitTree()
+	{
+		health.HealthChanged -= OnHealthChanged;
+		health.Died -= OnDied;
+	}
+	public override void _Input(InputEvent @event)
+	{
+		// No swinging or color switching during transitions
+		if (!GameManager.Instance.bCanControlPlayer)
+		{
+			return;  
+		} 
 
 		if (@event.IsActionPressed("attack") && !bIsSwinging)
 		{
@@ -83,26 +83,26 @@ public partial class Player : CharacterBody2D
 			brushTip.Modulate = PaintManager.Instance.palette[currentColor + 1]; // cuz palette has transluscent as 0
 		}
 
-    }
-    public override void _PhysicsProcess(double delta)
-    {
-        if (!GameManager.Instance.bCanControlPlayer)
-        {
-            Velocity = Vector2.Zero; // stop movement during transitions
-            return;
-        }
-        Vector2 inputDirection = Input.GetVector("left", "right", "up", "down");
-        
-        if(inputDirection != Vector2.Zero)
-        {
-            Velocity = Velocity.MoveToward(inputDirection * speed, acceleration * (float)delta);
-        }
-        else
-        {
-            Velocity = Velocity.MoveToward(Vector2.Zero, friction * (float)delta);
-        }
-        MoveAndSlide();
-    }
+	}
+	public override void _PhysicsProcess(double delta)
+	{
+		if (!GameManager.Instance.bCanControlPlayer)
+		{
+			Velocity = Vector2.Zero; // stop movement during transitions
+			return;
+		}
+		Vector2 inputDirection = Input.GetVector("left", "right", "up", "down");
+		
+		if(inputDirection != Vector2.Zero)
+		{
+			Velocity = Velocity.MoveToward(inputDirection * speed, acceleration * (float)delta);
+		}
+		else
+		{
+			Velocity = Velocity.MoveToward(Vector2.Zero, friction * (float)delta);
+		}
+		MoveAndSlide();
+	}
 
 	public void TeleportToSpawnPoint(Marker2D playerSpawn)
 	{

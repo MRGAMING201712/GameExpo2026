@@ -3,8 +3,8 @@ using System;
 
 public partial class Smudge : Enemy
 {
-	[Export] public float lungeSpeed;
-	[Export] public float splatRadius;
+	[Export] public float lungeSpeed = 160f;
+	[Export] public float splatRadius = 1f;
 	private Vector2 lungeDir;
 
 	protected override void OnAttackStart()

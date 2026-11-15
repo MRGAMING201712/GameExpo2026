@@ -3,16 +3,16 @@ using System;
 
 public partial class Enemy : Character
 {
-	[Export] public Texture2D spriteSheet;
-	[Export] public int frameSize;
-	[Export] public float speed;
-	[Export] public float attackRange;
-	[Export] public float attackCooldown;
-	[Export] public int attackDamage;
-	[Export] public int attackHitFrame; 
-	[Export] public int deathEffectFrame; 
-	[Export] public bool canBeKnockedBack;
-	[Export] public float knockbackForce;
+	//[Export] public Texture2D spriteSheet;
+	[Export] public int frameSize = 5;
+	[Export] public float speed = 80f;
+	[Export] public float attackRange = 200f;
+	[Export] public float attackCooldown = 5f;
+	[Export] public int attackDamage = 1;
+	[Export] public int attackHitFrame = 2; 
+	[Export] public int deathEffectFrame = 3; 
+	[Export] public bool canBeKnockedBack = true;
+	[Export] public float knockbackForce = 5f;
 
 	protected EnemyState state;
 	protected AnimatedSprite2D sprite;
@@ -24,6 +24,8 @@ public partial class Enemy : Character
 
 	public override void _Ready()
 	{
+		sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		navAgent = GetNode<NavigationAgent2D>("NavigationAgent2D");
 		base._Ready();
 		//GameManager.Instance.enemiesAlive++;
 		state = EnemyState.Chase;
@@ -32,7 +34,6 @@ public partial class Enemy : Character
 		PlayAnim("WALK");
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _PhysicsProcess(double delta)
 	{
 		if(state != EnemyState.Dead)
@@ -64,11 +65,14 @@ public partial class Enemy : Character
 		{
 			return;
 		}
-
 		base.TakeDamage(amount, hitFrom);
+		if(state == EnemyState.Dead)
+		{
+			return;
+		}
 	}
 
-	protected void Die()
+	protected override void Die()
 	{
 		state = EnemyState.Dead;
 		Velocity = Vector2.Zero;
@@ -77,7 +81,7 @@ public partial class Enemy : Character
 		//GameManager.enemiesAlive--;
 	}
 
-	protected void Tick(double delta)
+	protected virtual void Tick(double delta)
 	{
 		if (attackTimer > 0)
 		{
@@ -155,7 +159,7 @@ public partial class Enemy : Character
 		Velocity = Vector2.Zero;
 		FaceToward(player.GlobalPosition);
 		OnAttackStart();
-		PlayAnim("ATTACK");
+		PlayAnim("LUNGE");
 	}
 
 	protected void HitFlash()
@@ -180,7 +184,7 @@ public partial class Enemy : Character
 	private void OnFrameChanged()
 	{
 		string anim = sprite.Animation.ToString();
-		if(state == EnemyState.Attack && anim == "attack" && sprite.Frame == attackHitFrame)
+		if(state == EnemyState.Attack && anim == "LUNGE" && sprite.Frame == attackHitFrame)
 		{
 			OnAttackStart();
 		}
@@ -190,14 +194,14 @@ public partial class Enemy : Character
 	{
 		switch (sprite.Animation.ToString())
 		{
-			case "attack":
+			case "LUNGE":
 				if(state == EnemyState.Attack)
 				{
 					state = EnemyState.Chase;
 				}
 				break;
 
-				case "death":
+				case "DEATH":
 					QueueFree();
 					break;
 		}
