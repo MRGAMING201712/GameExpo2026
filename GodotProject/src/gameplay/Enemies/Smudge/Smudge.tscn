@@ -198,8 +198,6 @@ position = Vector2(0.5, 1.5)
 shape = SubResource("CircleShape2D_ntm7r")
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=806223421]
-collision_layer = 4
-collision_mask = 18
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtBox" unique_id=15469621]
 position = Vector2(0.5, 1.5)

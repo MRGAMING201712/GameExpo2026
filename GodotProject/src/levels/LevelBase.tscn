@@ -76,4 +76,3 @@ navigation_polygon = SubResource("NavigationPolygon_adw88")
 [node name="StaticBody2D" type="StaticBody2D" parent="NavigationRegion2D" unique_id=601108160]
 
 [node name="Camera2D" parent="." unique_id=768822499 instance=ExtResource("6_ajwyd")]
-zoom = Vector2(5.905, 5.905)
