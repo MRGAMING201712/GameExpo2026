@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://q50hbkishrgg" path="res://src/gameplay/player/Player.tscn" id="2_eqxgp"]
 [ext_resource type="Texture2D" uid="uid://dfvwp4p1iuh0j" path="res://assets/art/world/background/tilemap_packed.png" id="2_hqaei"]
 [ext_resource type="PackedScene" uid="uid://hf5g7c0e6udw" path="res://src/gameplay/Enemies/Smudge/Smudge.tscn" id="3_hitm7"]
+[ext_resource type="PackedScene" uid="uid://cag4is3uf5mj4" path="res://src/gameplay/Enemies/Eraser/Eraser.tscn" id="5_ntm7r"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_hitm7"]
 normal = Vector2(0, 1)
@@ -551,3 +552,8 @@ position = Vector2(367, 207)
 [node name="Camera2D" parent="." index="9" unique_id=768822499]
 position = Vector2(455, 266)
 zoom = Vector2(1.26, 1.26)
+
+[node name="Eraser" parent="." index="10" unique_id=290893706 instance=ExtResource("5_ntm7r")]
+position = Vector2(546, 220)
+collision_layer = 4
+collision_mask = 2

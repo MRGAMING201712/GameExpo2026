@@ -26,7 +26,6 @@ public partial class Enemy : Character
 	{
 		sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		navAgent = GetNode<NavigationAgent2D>("NavigationAgent2D");
-		base._Ready();
 		//GameManager.Instance.enemiesAlive++;
 		state = EnemyState.Chase;
 		sprite.FrameChanged += OnFrameChanged;
