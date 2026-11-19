@@ -23,9 +23,9 @@ shader = ExtResource("2_j0ymd")
 shader_parameter/tint_strength = 0.25
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_adw88"]
-vertices = PackedVector2Array(303.02344, -230.00781, 303.97656, 248, -22, 248, 152, -52.5, -90.5, -230.45313, -90.5, -52.5, -342, -53, -342, -201, -560.03125, -230.97656, -522.5, -201, -561.96094, 248, -522.5, -53, -361.5, 248, -361.5, 55, -22, 55, 152, -230.17969)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 5, 6, 7), PackedInt32Array(8, 4, 7, 9), PackedInt32Array(10, 8, 9, 11), PackedInt32Array(12, 10, 11, 13), PackedInt32Array(14, 13, 11, 6, 5), PackedInt32Array(14, 5, 3), PackedInt32Array(3, 15, 0), PackedInt32Array(14, 3, 2)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-570, -241, -572, 258, 314, 258, 313, -240)])
+vertices = PackedVector2Array(221, 327, 540, 355.0078, -765.0625, 356.97656, -70.5, 327, -228, 232, -421, 232, -563, 216, -759, 216, -767.84375, -72, -759, 37, -70.5, 68, -228, 85, -196, -248, -421, 85, -563, 37, -548, -72, -769, -251, -769.9297, -394.96094, -375, -393.78125, -548, -251, -375, -248, -196, -393.2422, 540, -391.02344, 346, -331, 540, -331, 346, -72, 540, -72, 205, -72, 221, 68, 205, -236, 10, -236, 10, -72)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 3, 2, 5), PackedInt32Array(6, 5, 2, 7), PackedInt32Array(7, 2, 8, 9), PackedInt32Array(10, 3, 4, 11, 12), PackedInt32Array(13, 5, 6, 14, 15), PackedInt32Array(9, 8, 15, 14), PackedInt32Array(16, 17, 18, 19), PackedInt32Array(15, 19, 18, 20, 13), PackedInt32Array(12, 21, 22, 23), PackedInt32Array(22, 24, 23), PackedInt32Array(25, 26, 1), PackedInt32Array(27, 25, 1, 28), PackedInt32Array(23, 25, 27, 29), PackedInt32Array(12, 23, 29, 30), PackedInt32Array(12, 30, 31, 10), PackedInt32Array(1, 0, 28), PackedInt32Array(27, 28, 10, 31), PackedInt32Array(20, 12, 11, 13)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-780, -405, -775, 367, 550, 365, 550, -401)])
 parsed_geometry_type = 1
 
 [node name="Zone" type="Node2D" unique_id=1085453153]

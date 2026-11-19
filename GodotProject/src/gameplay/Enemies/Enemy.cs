@@ -89,7 +89,7 @@ public partial class Enemy : Character
 		}
 	}
 
-	protected void Think()
+	protected virtual void Think()
 	{
 		ChasePlayer(speed);
 	}
@@ -159,7 +159,7 @@ public partial class Enemy : Character
 		Velocity = Vector2.Zero;
 		FaceToward(player.GlobalPosition);
 		OnAttackStart();
-		PlayAnim("LUNGE");
+		PlayAnim("ATTACK");
 	}
 
 	protected void HitFlash()
@@ -184,7 +184,7 @@ public partial class Enemy : Character
 	private void OnFrameChanged()
 	{
 		string anim = sprite.Animation.ToString();
-		if(state == EnemyState.Attack && anim == "LUNGE" && sprite.Frame == attackHitFrame)
+		if(state == EnemyState.Attack && anim == "ATTACK" && sprite.Frame == attackHitFrame)
 		{
 			OnAttackStart();
 		}
@@ -194,7 +194,7 @@ public partial class Enemy : Character
 	{
 		switch (sprite.Animation.ToString())
 		{
-			case "LUNGE":
+			case "ATTACK":
 				if(state == EnemyState.Attack)
 				{
 					state = EnemyState.Chase;
