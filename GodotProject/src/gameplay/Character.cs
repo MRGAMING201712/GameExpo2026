@@ -14,10 +14,13 @@ public partial class Character : CharacterBody2D
 	public virtual void TakeDamage(int amount, Vector2 hitFrom = default)
 	{
 		healthComponent.TakeDamage(amount);
+		GD.Print($"Character took {amount} damage. Current health: {healthComponent.currentHealth}");
 	}
 
 	protected virtual void Die()
 	{
 		QueueFree();
 	}
+
+	
 }

@@ -59,7 +59,7 @@ public partial class Enemy : Character
 		MoveAndSlide();
 	}
 
-	public void TakeDamage(int amount, Vector2 hitFrom = default)
+	public override void TakeDamage(int amount, Vector2 hitFrom = default)
 	{
 		if(state == EnemyState.Dead)
 		{
