@@ -547,17 +547,6 @@ shape = SubResource("RectangleShape2D_2qkkm")
 
 [node name="Grunt" parent="." index="8" unique_id=1938182177 instance=ExtResource("3_hitm7")]
 position = Vector2(367, 207)
-lungeSpeed = 160.0
-splatRadius = 1.0
-frameSize = 5
-speed = 80.0
-attackRange = 200.0
-attackCooldown = 5.0
-attackDamage = 1
-attackHitFrame = 2
-deathEffectFrame = 3
-canBeKnockedBack = true
-knockbackForce = 5.0
 
 [node name="Camera2D" parent="." index="9" unique_id=768822499]
 position = Vector2(455, 266)

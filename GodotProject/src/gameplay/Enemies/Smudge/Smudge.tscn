@@ -14,6 +14,18 @@ radius = 8.514693
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eqxgp"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_pu2x8"]
+atlas = ExtResource("6_73shh")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7qkvf"]
+atlas = ExtResource("6_73shh")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctyb1"]
+atlas = ExtResource("6_73shh")
+region = Rect2(32, 0, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_bo17p"]
 atlas = ExtResource("3_io0cc")
 region = Rect2(0, 0, 16, 16)
@@ -50,18 +62,6 @@ region = Rect2(0, 0, 16, 16)
 atlas = ExtResource("5_w0pgy")
 region = Rect2(16, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pu2x8"]
-atlas = ExtResource("6_73shh")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_7qkvf"]
-atlas = ExtResource("6_73shh")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ctyb1"]
-atlas = ExtResource("6_73shh")
-region = Rect2(32, 0, 16, 16)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_sgfx3"]
 atlas = ExtResource("7_eabw4")
 region = Rect2(0, 0, 16, 16)
@@ -96,6 +96,20 @@ region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_l0bqs"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pu2x8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7qkvf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ctyb1")
+}],
+"loop": 0,
+"name": &"ATTACK",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bo17p")
@@ -136,20 +150,6 @@ animations = [{
 }],
 "loop": 1,
 "name": &"IDLE",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pu2x8")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_7qkvf")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ctyb1")
-}],
-"loop": 0,
-"name": &"LUNGE",
 "speed": 5.0
 }, {
 "frames": [{
@@ -211,4 +211,4 @@ shape = SubResource("CircleShape2D_eqxgp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=522287335]
 sprite_frames = SubResource("SpriteFrames_l0bqs")
-animation = &"SPAWN"
+animation = &"ATTACK"
