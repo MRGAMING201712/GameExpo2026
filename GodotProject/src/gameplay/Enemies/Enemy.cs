@@ -78,7 +78,7 @@ public partial class Enemy : Character
 
 		//GameManager.kills++;
 		//GameManager.enemiesAlive--;
-	}
+	} 
 
 	protected virtual void Tick(double delta)
 	{

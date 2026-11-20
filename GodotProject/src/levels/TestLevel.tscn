@@ -4,7 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://q50hbkishrgg" path="res://src/gameplay/player/Player.tscn" id="2_eqxgp"]
 [ext_resource type="Texture2D" uid="uid://dfvwp4p1iuh0j" path="res://assets/art/world/background/tilemap_packed.png" id="2_hqaei"]
 [ext_resource type="PackedScene" uid="uid://hf5g7c0e6udw" path="res://src/gameplay/Enemies/Smudge/Smudge.tscn" id="3_hitm7"]
-[ext_resource type="PackedScene" uid="uid://cag4is3uf5mj4" path="res://src/gameplay/Enemies/Eraser/Eraser.tscn" id="5_ntm7r"]
+[ext_resource type="PackedScene" uid="uid://dekvonekqlo0x" path="res://src/gameplay/Enemies/Eraser/Eraser.tscn" id="5_ntm7r"]
+[ext_resource type="PackedScene" uid="uid://bbmdevxbsb3fi" path="res://src/gameplay/Enemies/enemy_spawner.tscn" id="6_rljl1"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_hitm7"]
 normal = Vector2(0, 1)
@@ -522,6 +523,9 @@ position = Vector2(-1, 275)
 position = Vector2(445, 272)
 
 [node name="Player" parent="." index="2" unique_id=12451452 instance=ExtResource("2_eqxgp")]
+scale = Vector2(4, 4)
+arcDistanceFromPlayer = 30.71
+paintSize = 40.0
 
 [node name="Gate" parent="." index="4" unique_id=930881152]
 position = Vector2(119, 271)
@@ -557,3 +561,8 @@ zoom = Vector2(1.26, 1.26)
 position = Vector2(546, 220)
 collision_layer = 4
 collision_mask = 2
+
+[node name="EnemySpawner2" parent="." index="11" unique_id=625181599 instance=ExtResource("6_rljl1")]
+position = Vector2(449, 230)
+enemyScenes = [ExtResource("5_ntm7r"), ExtResource("3_hitm7")]
+spawnRadius = 200.0

@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cag4is3uf5mj4"]
+[gd_scene format=3 uid="uid://dekvonekqlo0x"]
 
 [ext_resource type="Script" uid="uid://52t8qcrc8w7d" path="res://src/gameplay/Enemies/Eraser/Eraser.cs" id="1_cxeu3"]
 [ext_resource type="PackedScene" uid="uid://dxukcmok1lvd0" path="res://src/components/HealthComponent.tscn" id="2_u7t1k"]
@@ -11,6 +11,14 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q62xx"]
 radius = 9.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_07ekc"]
+atlas = ExtResource("5_hlfav")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2e4k"]
+atlas = ExtResource("5_hlfav")
+region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cxeu3"]
 atlas = ExtResource("3_cxeu3")
@@ -62,7 +70,13 @@ region = Rect2(48, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_l0bqs"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_07ekc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2e4k")
+}],
 "loop": 0,
 "name": &"ATTACK",
 "speed": 5.0
@@ -138,7 +152,7 @@ shape = SubResource("CircleShape2D_l0bqs")
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=1782031963]
 collision_layer = 4
-collision_mask = 2
+collision_mask = 18
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox" unique_id=1307126712]
 shape = SubResource("CircleShape2D_q62xx")
@@ -149,4 +163,4 @@ shape = SubResource("CircleShape2D_q62xx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=444864613]
 sprite_frames = SubResource("SpriteFrames_l0bqs")
-animation = &"WALK"
+animation = &"ATTACK"

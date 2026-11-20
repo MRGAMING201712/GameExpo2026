@@ -4,15 +4,17 @@ using System;
 public partial class Eraser : Enemy
 {
 	[Export] public float walkEraseRadius = 10f;
+	[Export] public float attackSpeed = 160f;
 	[Export] public float slamEraseRadius = 30f;
+	[Export] public float attackTime = 30f;
 	private Vector2 target;
+	private float attackTimer;
 	//private bool hasTarget;
 	//private double retargetTimer;
 	private Vector2 lungeDir;
 
 	protected override void Think()
 	{
-		
 		ChasePlayer(speed);
 		PaintManager.Instance.Erase(GlobalPosition, walkEraseRadius);
 	}
@@ -21,11 +23,19 @@ public partial class Eraser : Enemy
 	{
 		base.OnAttackStart();
 		target = GlobalPosition.DirectionTo(player.GlobalPosition);
+		attackTimer = attackTime;
 		PaintManager.Instance.Erase(GlobalPosition, slamEraseRadius);
 	}
 
 	protected override Vector2 AttackMovement()
 	{
-		return target * speed;
+		attackTimer -= (float)GetPhysicsProcessDeltaTime();
+		if (attackTimer <= 0f)
+		{
+			state = EnemyState.Chase;
+			return Vector2.Zero;
+		}
+		PaintManager.Instance.Erase(GlobalPosition, walkEraseRadius);
+		return target * attackSpeed;
 	}
 }
