@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dfvwp4p1iuh0j" path="res://assets/art/world/background/tilemap_packed.png" id="1_qsbfr"]
 [ext_resource type="Script" uid="uid://bgf41gh6yknno" path="res://src/levels/Zone.cs" id="1_r7s8a"]
-[ext_resource type="PackedScene" uid="uid://dait3y5nl7bnw" path="res://src/gameplay/spawner/PlayerSpawn.tscn" id="2_dklsv"]
+[ext_resource type="PackedScene" uid="uid://dait3y5nl7bnw" path="res://src/gameplay/spawners/PlayerSpawn.tscn" id="2_dklsv"]
 [ext_resource type="Shader" uid="uid://dfhqc7ae3o56d" path="res://src/shaders/world_reveal.gdshader" id="2_iearj"]
 [ext_resource type="PackedScene" uid="uid://c7ipfhv4quhfu" path="res://src/gameplay/gate/Gate.tscn" id="5_7y3dr"]
 

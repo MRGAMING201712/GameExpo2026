@@ -2,8 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bgf41gh6yknno" path="res://src/levels/Zone.cs" id="1_qbtev"]
 [ext_resource type="Shader" uid="uid://dfhqc7ae3o56d" path="res://src/shaders/world_reveal.gdshader" id="2_j0ymd"]
-[ext_resource type="PackedScene" uid="uid://dait3y5nl7bnw" path="res://src/gameplay/spawner/PlayerSpawn.tscn" id="4_adw88"]
-[ext_resource type="PackedScene" uid="uid://tpmfow63nch5" path="res://src/gameplay/spawner/EnemySpawner.tscn" id="5_j0ymd"]
+[ext_resource type="PackedScene" uid="uid://dait3y5nl7bnw" path="res://src/gameplay/spawners/PlayerSpawn.tscn" id="4_adw88"]
 [ext_resource type="PackedScene" uid="uid://mvpjvsbt8o6g" path="res://src/gameplay/camera/Camera.tscn" id="6_ajwyd"]
 [ext_resource type="PackedScene" uid="uid://c7ipfhv4quhfu" path="res://src/gameplay/gate/Gate.tscn" id="6_eptvw"]
 
@@ -56,8 +55,6 @@ shape = SubResource("WorldBoundaryShape2D_nswcu")
 
 [node name="PlayerSpawn" parent="." unique_id=1768636704 instance=ExtResource("4_adw88")]
 
-[node name="EnemySpawner" parent="." unique_id=1678469005 instance=ExtResource("5_j0ymd")]
-
 [node name="Gate" parent="." unique_id=930881152 instance=ExtResource("6_eptvw")]
 z_index = 1
 
@@ -70,7 +67,7 @@ unique_name_in_owner = true
 material = SubResource("ShaderMaterial_hqaei")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." unique_id=271845211]
-position = Vector2(125, 18)
+position = Vector2(69, -2)
 navigation_polygon = SubResource("NavigationPolygon_adw88")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="NavigationRegion2D" unique_id=601108160]
