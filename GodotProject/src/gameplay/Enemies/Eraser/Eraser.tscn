@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://scnyssev7vqh" path="res://assets/art/characters/enemies/eraser/eraser_walk_16x16.png" id="6_u7t1k"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l0bqs"]
+radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q62xx"]
 radius = 9.0
@@ -144,6 +145,8 @@ animations = [{
 }]
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=290893706 node_paths=PackedStringArray("healthComponent")]
+collision_layer = 4
+collision_mask = 22
 script = ExtResource("1_cxeu3")
 healthComponent = NodePath("HealthComponent")
 
@@ -163,4 +166,4 @@ shape = SubResource("CircleShape2D_q62xx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=444864613]
 sprite_frames = SubResource("SpriteFrames_l0bqs")
-animation = &"ATTACK"
+animation = &"HURT"
