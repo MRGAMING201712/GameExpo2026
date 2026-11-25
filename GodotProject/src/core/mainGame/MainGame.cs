@@ -43,6 +43,7 @@ public partial class MainGame : Node
 
 		player.availableColors = Mathf.Min(GameManager.Instance.zoneIndex, 2);
 		player.TeleportToSpawnPoint(level.GetNode<Marker2D>("PlayerSpawn"));
+		FitCameraToLevel(level);
 	}
 
 	public void ClearLevel(Node keep = null)
@@ -59,5 +60,22 @@ public partial class MainGame : Node
 				child.QueueFree();
 			}
 		}
+	}
+
+	private void FitCameraToLevel(Node level)
+	{
+		var cam = player.GetNode<Camera2D>("Camera2D");
+		var floor = level.GetNode<TileMapLayer>("Floor");
+
+		Rect2I used = floor.GetUsedRect();
+		Vector2I tile = floor.TileSet.TileSize;
+		Vector2 topLeft = floor.ToGlobal(used.Position * tile);
+		Vector2 bottomRight = floor.ToGlobal(used.End * tile);
+
+		cam.LimitLeft = (int)topLeft.X;
+		cam.LimitTop = (int)topLeft.Y;
+		cam.LimitRight = (int)bottomRight.X;
+		cam.LimitBottom = (int)bottomRight.Y;
+		cam.ResetSmoothing();
 	}
 }

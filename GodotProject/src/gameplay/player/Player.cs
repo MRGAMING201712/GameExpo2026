@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
@@ -26,6 +27,10 @@ public partial class Player : CharacterBody2D
 	public PaintColor [] allColors = {PaintColor.Red, PaintColor.Blue, PaintColor.Yellow};
 	public int availableColors = 0;
 	public int currentColor = 0;
+	[Export] private Area2D brushHitbox;
+	[Export] public int brushDamage = 1;
+	private readonly List<Enemy> hitThisSwing = new();
+
 
 	// Animations
 	[Export] public AnimatedSprite2D sprite;
@@ -52,6 +57,8 @@ public partial class Player : CharacterBody2D
 		health.Died += OnDied;
 		sprite.AnimationFinished += OnAnimationFinished;
 		brushTip.Modulate = PaintManager.Instance.palette[currentColor + 1]; // cuz palette has transluscent as 0
+		brushHitbox.Monitoring = false;
+    	brushHitbox.AreaEntered += OnBrushHit;
 		PlayAnim(DirAnim("idle"));
 	}
 
@@ -60,6 +67,7 @@ public partial class Player : CharacterBody2D
 		health.HealthChanged -= OnHealthChanged;
 		health.Died -= OnDied;
 		sprite.AnimationFinished -= OnAnimationFinished;
+		brushHitbox.AreaEntered -= OnBrushHit;
 	}
 	public override void _Input(InputEvent @event)
 	{
@@ -73,11 +81,12 @@ public partial class Player : CharacterBody2D
 			bIsSwinging = true;
 			bIsHurt = false;
 			brushRoot.Visible = true;
+			hitThisSwing.Clear();
+			brushHitbox.SetDeferred(Area2D.PropertyName.Monitoring, true);
 			aim = (GetGlobalMousePosition() - GlobalPosition).Angle();
 			lastTipLocation = TipAt(-arcLength);
 			FaceToward(GetGlobalMousePosition());
 			StartSwingAnim();
-
 
 			swingTween = CreateTween();
 			swingTween.TweenMethod(Callable.From<float>(SwingStep), -arcLength, arcLength, timeForSwing).SetTrans(Tween.TransitionType.Cubic).SetEase(Tween.EaseType.Out);
@@ -156,7 +165,6 @@ public partial class Player : CharacterBody2D
 		}
 
 		lastTipLocation = tip;
-		GD.Print($"tip {tip}  painted here: {PaintManager.Instance.IsCellPainted(tip)}");
 	}
 
 	private Vector2 TipAt(float offset)
@@ -169,6 +177,8 @@ public partial class Player : CharacterBody2D
 		brushRoot.Visible = false;
 		bIsSwinging = false;
 		sprite.SpeedScale = 1f;
+		brushHitbox.SetDeferred(Area2D.PropertyName.Monitoring, false);
+		hitThisSwing.Clear();
 	}
 
 	private void OnHealthChanged(int current, int max)
@@ -205,6 +215,16 @@ public partial class Player : CharacterBody2D
 		PlayAnim("victory");
 	}
 
+	// Attacking Logic
+	private void OnBrushHit(Area2D area)
+	{
+		if (!bIsSwinging) return;
+		if (area.Owner is not Enemy enemy) return;
+		if (hitThisSwing.Contains(enemy)) return;
+		hitThisSwing.Add(enemy);
+		enemy.TakeDamage(brushDamage, GlobalPosition);
+	}
+	// Animation logic
 	// Priority: dead > victory > swing > hurt > walk/idle
 	private void UpdateAnimation(Vector2 inputDirection)
 	{

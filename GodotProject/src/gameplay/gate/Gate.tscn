@@ -1,14 +1,34 @@
 [gd_scene format=3 uid="uid://c7ipfhv4quhfu"]
 
 [ext_resource type="Script" uid="uid://dsnacvu1f8e0k" path="res://src/gameplay/gate/Gate.cs" id="1_6vos2"]
-[ext_resource type="Texture2D" uid="uid://bj3chufeaxxxd" path="res://assets/art/world/props/gate/gate_closed_placeholder.png" id="1_76ii7"]
-[ext_resource type="Texture2D" uid="uid://b1yacn3xpwjk6" path="res://assets/art/world/props/gate/gate_open_placeholder.png" id="2_6vos2"]
+[ext_resource type="Texture2D" uid="uid://h30x4k15ba8b" path="res://assets/art/world/props/gate/gate_closed_32x32.png" id="2_6vos2"]
+[ext_resource type="Texture2D" uid="uid://bjao2053qjmat" path="res://assets/art/world/props/gate/gate_opening_32x32.png" id="3_xmdjh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5u6a"]
+atlas = ExtResource("3_xmdjh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1lpw"]
+atlas = ExtResource("3_xmdjh")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qxmjf"]
+atlas = ExtResource("3_xmdjh")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_076pe"]
+atlas = ExtResource("3_xmdjh")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_owx3x"]
+atlas = ExtResource("3_xmdjh")
+region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_76ii7"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_76ii7")
+"texture": ExtResource("2_6vos2")
 }],
 "loop": 1,
 "name": &"closed",
@@ -16,18 +36,30 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_6vos2")
+"texture": SubResource("AtlasTexture_h5u6a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1lpw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qxmjf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_076pe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_owx3x")
 }],
-"loop": 1,
+"loop": 0,
 "name": &"opened",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q84hh"]
-size = Vector2(150, 60)
+size = Vector2(39, 42)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h5ls0"]
-size = Vector2(150, 60)
+size = Vector2(39, 42)
 
 [node name="Gate" type="Node2D" unique_id=930881152 node_paths=PackedStringArray("gateSprite", "gateCollision", "gateTrigger")]
 script = ExtResource("1_6vos2")
@@ -37,16 +69,18 @@ gateTrigger = NodePath("AnimatedSprite2D/Trigger")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1643011415]
 sprite_frames = SubResource("SpriteFrames_76ii7")
-animation = &"closed"
+animation = &"opened"
 
 [node name="Blocker" type="StaticBody2D" parent="AnimatedSprite2D" unique_id=1246051029]
 collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Blocker" unique_id=1246461251]
+position = Vector2(0.5, 1)
 shape = SubResource("RectangleShape2D_q84hh")
 
 [node name="Trigger" type="Area2D" parent="AnimatedSprite2D" unique_id=709087463]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Trigger" unique_id=2020984348]
+position = Vector2(0.5, 1)
 shape = SubResource("RectangleShape2D_h5ls0")

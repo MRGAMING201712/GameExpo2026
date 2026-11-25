@@ -334,7 +334,7 @@ radius = 11.38
 [sub_resource type="CircleShape2D" id="CircleShape2D_80xng"]
 radius = 6.73
 
-[node name="Player" type="CharacterBody2D" unique_id=12451452 node_paths=PackedStringArray("health", "brushRoot", "brushTip", "sprite")]
+[node name="Player" type="CharacterBody2D" unique_id=12451452 node_paths=PackedStringArray("health", "brushRoot", "brushTip", "brushHitbox", "sprite")]
 scale = Vector2(3, 3)
 collision_mask = 2
 script = ExtResource("1_km0ph")
@@ -343,6 +343,7 @@ timeForSwing = 0.2
 paintSize = 40.92
 brushRoot = NodePath("BrushRoot")
 brushTip = NodePath("BrushRoot/BrushTip")
+brushHitbox = NodePath("BrushRoot/BrushTip/AttackHitbox")
 sprite = NodePath("PlayerSprite")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=705779923]
@@ -370,9 +371,17 @@ position = Vector2(11, 3)
 texture = ExtResource("4_qeda6")
 
 [node name="AttackHitbox" type="Area2D" parent="BrushRoot/BrushTip" unique_id=1409207226]
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BrushRoot/BrushTip/AttackHitbox" unique_id=1412811052]
 position = Vector2(7, 0)
 shape = SubResource("CircleShape2D_80xng")
 
 [node name="HealthComponent" parent="." unique_id=937206982 instance=ExtResource("3_yfsif")]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=764403475]
+zoom = Vector2(2, 2)
+process_callback = 0
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 6.0

@@ -22,7 +22,7 @@ public partial class Gate : Node2D
 
     public void OnGateOpened()
     {
-        gateSprite.Animation = "opened";
+        gateSprite.Play("opened");
         gateCollision.SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
         bIsOpen = true;
     }

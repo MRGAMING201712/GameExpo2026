@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://dekvonekqlo0x" path="res://src/gameplay/Enemies/Eraser/Eraser.tscn" id="5_ntm7r"]
 [ext_resource type="PackedScene" uid="uid://bbmdevxbsb3fi" path="res://src/gameplay/spawners/EnemySpawner.tscn" id="6_rljl1"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ntm7r"]
+
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_hitm7"]
 normal = Vector2(0, 1)
 
@@ -505,25 +507,27 @@ sources/0 = SubResource("TileSetAtlasSource_hitm7")
 
 [node name="Zone" unique_id=1085453153 instance=ExtResource("1_rtqgl")]
 
-[node name="TopWall" parent="LevelBorder" parent_id_path=PackedInt32Array(437417678) index="0" unique_id=8986453]
-position = Vector2(431, 4)
+[node name="LevelBorder" parent="." index="0" unique_id=437417678]
+physics_material_override = SubResource("PhysicsMaterial_ntm7r")
+
+[node name="TopWall" parent="LevelBorder" index="0" unique_id=8986453]
+position = Vector2(3, -633)
 shape = SubResource("WorldBoundaryShape2D_hitm7")
 
-[node name="RightWall" parent="LevelBorder" parent_id_path=PackedInt32Array(437417678) index="1" unique_id=298951740]
-position = Vector2(900, 301)
+[node name="RightWall" parent="LevelBorder" index="1" unique_id=298951740]
+position = Vector2(1539, 149)
 
-[node name="BottomWall" parent="LevelBorder" parent_id_path=PackedInt32Array(437417678) index="2" unique_id=480521510]
-position = Vector2(480, 574)
+[node name="BottomWall" parent="LevelBorder" index="2" unique_id=480521510]
+position = Vector2(52.99997, 1045)
 
-[node name="LeftWall" parent="LevelBorder" parent_id_path=PackedInt32Array(437417678) index="3" unique_id=616019324]
-position = Vector2(-1, 275)
+[node name="LeftWall" parent="LevelBorder" index="3" unique_id=616019324]
+position = Vector2(-1148, 275)
 
 [node name="PlayerSpawn" parent="." index="1" unique_id=1768636704]
-position = Vector2(445, 272)
+position = Vector2(-142, 204)
 
 [node name="Gate" parent="." index="2" unique_id=930881152]
 position = Vector2(119, 271)
-rotation = -1.5707964
 
 [node name="Floor" parent="." index="3" unique_id=129545228]
 position = Vector2(577, 326)
@@ -544,11 +548,7 @@ position = Vector2(578, 256)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NavigationRegion2D/StaticBody2D" parent_id_path=PackedInt32Array(601108160) index="0" unique_id=1093678967]
 shape = SubResource("RectangleShape2D_2qkkm")
 
-[node name="Camera2D" parent="." index="6" unique_id=768822499]
-position = Vector2(194, 208)
-zoom = Vector2(0.435, 0.395)
-
-[node name="EnemySpawner2" parent="." index="7" unique_id=625181599 instance=ExtResource("6_rljl1")]
+[node name="EnemySpawner2" parent="." index="6" unique_id=625181599 instance=ExtResource("6_rljl1")]
 position = Vector2(449, 230)
 enemyScenes = [ExtResource("5_ntm7r"), ExtResource("3_hitm7")]
 spawnRadius = 200.0

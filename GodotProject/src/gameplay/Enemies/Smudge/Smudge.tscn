@@ -206,6 +206,7 @@ position = Vector2(0.5, 1.5)
 shape = SubResource("CircleShape2D_eqxgp")
 
 [node name="HealthComponent" parent="." unique_id=937206982 instance=ExtResource("2_14km0")]
+maxHealth = 1
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=446702695]
 

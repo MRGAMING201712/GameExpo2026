@@ -9,7 +9,7 @@
 
 [node name="GameManager" type="Node" unique_id=1283605049]
 script = ExtResource("1_3lonx")
-coverageToWin = 0.05
+coverageToWin = 0.001
 mainMenuScreen = ExtResource("2_bi176")
 mainGameScene = ExtResource("2_mudfu")
 levelScenes = Array[PackedScene]([ExtResource("4_hihdp"), ExtResource("4_hihdp"), ExtResource("4_hihdp")])

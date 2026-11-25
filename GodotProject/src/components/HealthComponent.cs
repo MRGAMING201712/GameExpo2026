@@ -24,6 +24,7 @@ public partial class HealthComponent : Node
 
 		currentHealth = Mathf.Max(currentHealth - damage, 0);
 		EmitSignal("HealthChanged", currentHealth, maxHealth);
+		GD.Print($"HealthComponent: Took {damage} damage, current health: {currentHealth}/{maxHealth}");
 		if (currentHealth <= 0)
 		{
 			currentHealth = 0;

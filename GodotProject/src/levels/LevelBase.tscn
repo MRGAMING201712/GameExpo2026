@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://bgf41gh6yknno" path="res://src/levels/Zone.cs" id="1_qbtev"]
 [ext_resource type="Shader" uid="uid://dfhqc7ae3o56d" path="res://src/shaders/world_reveal.gdshader" id="2_j0ymd"]
 [ext_resource type="PackedScene" uid="uid://dait3y5nl7bnw" path="res://src/gameplay/spawners/PlayerSpawn.tscn" id="4_adw88"]
-[ext_resource type="PackedScene" uid="uid://mvpjvsbt8o6g" path="res://src/gameplay/camera/Camera.tscn" id="6_ajwyd"]
 [ext_resource type="PackedScene" uid="uid://c7ipfhv4quhfu" path="res://src/gameplay/gate/Gate.tscn" id="6_eptvw"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_j0ymd"]
@@ -31,6 +30,7 @@ parsed_geometry_type = 1
 script = ExtResource("1_qbtev")
 
 [node name="LevelBorder" type="StaticBody2D" parent="." unique_id=437417678]
+collision_layer = 2
 
 [node name="TopWall" type="CollisionShape2D" parent="LevelBorder" unique_id=8986453]
 position = Vector2(-27, -360)
@@ -71,6 +71,3 @@ position = Vector2(69, -2)
 navigation_polygon = SubResource("NavigationPolygon_adw88")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="NavigationRegion2D" unique_id=601108160]
-
-[node name="Camera2D" parent="." unique_id=768822499 instance=ExtResource("6_ajwyd")]
-zoom = Vector2(5.905, 5.905)
