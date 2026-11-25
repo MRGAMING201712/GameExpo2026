@@ -193,7 +193,7 @@ public partial class Enemy : Character
 			OnAttackStart();
 		}
 	}
-
+	
 	private void OnAnimationFinished()
 	{
 		switch (sprite.Animation.ToString())
