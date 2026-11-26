@@ -18,13 +18,14 @@ public partial class Enemy : Character
 	protected EnemyState state;
 	protected AnimatedSprite2D sprite;
 	protected NavigationAgent2D navAgent;
-	protected Player player => MainGame.Instance.player;
+	protected Player player => MainGame.Instance?.player;
 
 	private float attackTimer;
 	private Vector2 knockVelocity;
 
 	public override void _Ready()
 	{
+		base._Ready();
 		sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 		navAgent = GetNode<NavigationAgent2D>("NavigationAgent2D");
 		//GameManager.Instance.enemiesAlive++;
@@ -66,6 +67,10 @@ public partial class Enemy : Character
 			return;
 		}
 		base.TakeDamage(amount, hitFrom);
+		if(state == EnemyState.Chase)
+		{
+			PlayAnim("HURT");
+		}
 		if(state == EnemyState.Dead)
 		{
 			return;
@@ -76,7 +81,7 @@ public partial class Enemy : Character
 	{
 		state = EnemyState.Dead;
 		Velocity = Vector2.Zero;
-
+		PlayAnim("DEATH");
 		//GameManager.kills++;
 		//GameManager.enemiesAlive--;
 	} 
@@ -189,7 +194,7 @@ public partial class Enemy : Character
 			OnAttackStart();
 		}
 	}
-
+	
 	private void OnAnimationFinished()
 	{
 		switch (sprite.Animation.ToString())
@@ -201,9 +206,17 @@ public partial class Enemy : Character
 				}
 				break;
 
-				case "DEATH":
-					QueueFree();
-					break;
+
+			case "HURT":
+				if(state == EnemyState.Chase)
+				{
+					PlayAnim("WALK");
+				}
+				break;
+
+			case "DEATH":
+				QueueFree();
+				break;
 		}
 	}
 }

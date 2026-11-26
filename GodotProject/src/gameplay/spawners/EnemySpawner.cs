@@ -7,6 +7,7 @@ public partial class EnemySpawner : Node2D
 	[Export] public bool nonBuilding = true;
 	[Export] public float minDistance = 120f;
 	[Export] public float spawnRadius = 30f;
+	[Export] public float maxEnemies = 20;
 
 	private float spawnTime;
 
@@ -16,10 +17,28 @@ public partial class EnemySpawner : Node2D
 		{
 			return;
 		}
+		if(NumAlive() >= maxEnemies)
+		{
+			return;
+		}
+
 		int randomIndex = GD.RandRange(0, enemyScenes.Length - 1);
 		Node2D enemy = enemyScenes[randomIndex].Instantiate<Node2D>();
 		AddChild(enemy);
 		enemy.GlobalPosition = pos;
+	}
+
+	private int NumAlive()
+	{
+		int count = 0;
+		foreach(Node child in GetChildren())
+		{
+			if(child is Enemy e)
+			{
+				count++;
+			}
+		}
+		return count;
 	}
 
 	private bool FindSpawnPoint(out Vector2 pos)

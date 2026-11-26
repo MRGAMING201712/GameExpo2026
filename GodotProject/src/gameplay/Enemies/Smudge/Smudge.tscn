@@ -189,12 +189,12 @@ animations = [{
 
 [node name="CharacterBody2D" type="CharacterBody2D" unique_id=797691443 node_paths=PackedStringArray("healthComponent")]
 collision_layer = 4
-collision_mask = 2
+collision_mask = 22
 script = ExtResource("1_r2oxv")
 healthComponent = NodePath("HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=382180115]
-position = Vector2(0.5, 1.5)
+position = Vector2(0.06, 3.27)
 shape = SubResource("CircleShape2D_ntm7r")
 
 [node name="HurtBox" type="Area2D" parent="." unique_id=806223421]
@@ -202,7 +202,7 @@ collision_layer = 4
 collision_mask = 18
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtBox" unique_id=15469621]
-position = Vector2(0.5, 1.5)
+position = Vector2(0.045, 3.27)
 shape = SubResource("CircleShape2D_eqxgp")
 
 [node name="HealthComponent" parent="." unique_id=937206982 instance=ExtResource("2_14km0")]
