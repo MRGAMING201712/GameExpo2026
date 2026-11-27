@@ -10,7 +10,12 @@ public partial class EnemySpawner : Node2D
 	[Export] public float maxEnemies = 20;
 
 	private float spawnTime;
-
+	public override void _Ready()
+	{
+		var timer = GetNode<Timer>("Timer");
+		timer.Timeout += _on_timer_timeout;
+		timer.Start();
+	}
 	public void _on_timer_timeout()
 	{
 		if(!FindSpawnPoint(out Vector2 pos))
@@ -24,6 +29,7 @@ public partial class EnemySpawner : Node2D
 
 		int randomIndex = GD.RandRange(0, enemyScenes.Length - 1);
 		Node2D enemy = enemyScenes[randomIndex].Instantiate<Node2D>();
+		enemy.Scale = new Vector2(3f, 3f);
 		AddChild(enemy);
 		enemy.GlobalPosition = pos;
 	}
